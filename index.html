@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <title>Cynthia Motaung - .NET Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Cynthia Motaung, a .NET Developer specializing in building robust web applications and APIs with C#, ASP.NET Core, and Azure.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-portfolio-domain.com/">
+  <meta property="og:title" content="Cynthia Motaung - .NET Developer Portfolio">
+  <meta property="og:description" content="Portfolio of Cynthia Motaung, a .NET Developer specializing in robust web applications and APIs.">
+  <meta property="og:image" content="https://your-portfolio-domain.com/assets/portfolio-preview.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://your-portfolio-domain.com/">
+  <meta property="twitter:title" content="Cynthia Motaung - .NET Developer Portfolio">
+  <meta property="twitter:description" content="Portfolio of Cynthia Motaung, a .NET Developer specializing in robust web applications and APIs.">
+  <meta property="twitter:image" content="https://your-portfolio-domain.com/assets/portfolio-preview.jpg">
+
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" as="style">
+  <link rel="preload" href="assets/logo.png" as="image">
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="cursor-dot" data-cursor-dot></div>
+  <div class="cursor-outline" data-cursor-outline></div>
+
+  <div class="loader" id="loader" role="status" aria-label="Loading content">
+    <div class="spinner"></div>
+  </div>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner-wrapper">
+      <a href="index.html" class="logo-link" aria-label="Cynthia Motaung's Home" data-magnetic>
+        <svg id="logo-svg" width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="logo-path-c" d="M62.3,25.4C54.5,18.8,44.5,15,34,15C23.5,15,13.5,18.8,5.7,25.4" stroke-width="8" stroke-linecap="round"/>
+            <path class="logo-path-m" d="M30,50 L50,75 L70,50" stroke-width="8" stroke-linecap="round"/>
+            <path class="logo-path-outer" d="M90,50 A40 40 0 1 1 10 50 A40 40 0 1 1 90 50" stroke-width="8"/>
+        </svg>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link" data-magnetic>Home</a></li>
+          <li><a href="#about" class="nav-link" data-magnetic>About</a></li>
+          <li><a href="#resume" class="nav-link" data-magnetic>Resume</a></li>
+          <li><a href="#skills" class="nav-link" data-magnetic>Skills</a></li>
+          <li><a href="#projects" class="nav-link" data-magnetic>Projects</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <button id="connect-button" class="cta-button secondary" data-magnetic>Connect</button>
+        <button id="theme-toggle" aria-label="Toggle dark/light mode" data-magnetic>
+          <i class="bi bi-moon-fill" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+    <section id="home" class="intro-section animated-section" aria-labelledby="intro-heading">
+      <div id="particles-js"></div>
+      <div class="intro-container" data-parallax-container>
+        <h1 id="intro-heading" class="text-scramble" data-parallax-item>Hello, I'm Cynthia Motaung</h1>
+        <p class="profession" data-parallax-item>.NET Developer</p>
+        <p class="about-intro">
+          A Johannesburg-based .NET Developer with a passion for building secure, scalable, and high-performance web applications. I specialize in the Microsoft technology stack, including C#, ASP.NET Core, and Azure.
+        </p>
+        <div class="social-links-container">
+          <a href="https://www.linkedin.com/in/cynthia-motaung/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" data-magnetic>
+            <i class="bi bi-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="https://github.com/Cynthia-Motaung" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" data-magnetic>
+            <i class="bi bi-github" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="button-group">
+          <a href="#projects" class="cta-button primary" data-magnetic>Explore My Work</a>
+          <a href="Resume.pdf" class="cta-button secondary" download="Resume.pdf" data-magnetic>Download Resume</a>
+        </div>
+      </div>
+      <a href="#about" class="scroll-down-indicator" aria-label="Scroll to about section">
+        <div class="mouse">
+            <span></span>
+        </div>
+      </a>
+    </section>
+
+    <section id="about" class="about-section animated-section">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <figure class="profile-figure">
+          <img src="Media.jpg" alt="Profile Picture of Cynthia Motaung, a .NET Developer" class="profile-pic" loading="lazy" width="150" height="150"/>
+          <figcaption class="sr-only">Cynthia Motaung's profile picture</figcaption>
+        </figure>
+        <div class="about-text">
+          <p class="about-paragraph">
+            I'm Cynthia Motaung, a Software Engineer specializing in the .NET ecosystem. With a strong foundation in C# and object-oriented programming, I am dedicated to crafting clean, maintainable, and efficient code. My focus is on developing robust back-end services, RESTful APIs, and full-stack web applications using ASP.NET Core.
+          </p>
+          <p class="about-paragraph">
+            I have hands-on experience designing and implementing database solutions with Entity Framework Core and SQL Server, and I am proficient in deploying applications to cloud platforms like Azure. I am committed to continuous learning and staying current with the latest trends in software development to solve complex problems and deliver exceptional value.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume" class="resume-section animated-section">
+      <h2>My Journey</h2>
+      <div class="resume-container">
+        <div class="resume-grid">
+          <div class="resume-category">
+            <h3>
+                <svg class="resume-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="briefcase-body" d="M20 6H4C2.9 6 2 6.9 2 8V19C2 20.1 2.9 21 4 21H20C21.1 21 22 20.1 22 19V8C22 6.9 21.1 6 20 6Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="briefcase-handle" d="M16 6V4C16 2.9 15.1 2 14 2H10C8.9 2 8 2.9 8 4V6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Experience
+            </h3>
+          </div>
+          <div class="resume-entries">
+            <div class="resume-entry">
+              <h4>Junior .NET Developer</h4>
+              <p class="resume-meta">Innovatech Solutions | Jan 2024 - Present</p>
+              <ul>
+                <li>Develop and maintain web applications using ASP.NET Core, C#, and Entity Framework Core, serving over 10,000 users.</li>
+                <li>Design and implement RESTful APIs to support front-end applications and facilitate third-party integrations.</li>
+                <li>Write and optimize SQL queries and stored procedures for SQL Server to improve data retrieval performance.</li>
+                <li>Collaborate in an Agile team, participating in sprint planning, code reviews, and daily stand-ups to ensure timely delivery of features.</li>
+              </ul>
+            </div>
+            <div class="resume-entry">
+              <h4>Software Development Intern</h4>
+              <p class="resume-meta">CodeCrafters Inc. | June 2023 - Dec 2023</p>
+              <ul>
+                <li>Assisted in debugging and resolving issues in a large-scale C# codebase, reducing application errors by 10%.</li>
+                <li>Developed front-end features using Razor Pages and basic JavaScript to improve user interactivity.</li>
+                <li>Gained proficiency in version control with Git and Azure DevOps in a professional team setting.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="resume-category">
+            <h3>
+                <svg class="resume-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="mortarboard-cap" d="M22 10V16M2 10L12 15L22 10L12 5L2 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="mortarboard-tassel" d="M6 12V18C6 20.2091 8.68629 22 12 22C15.3137 22 18 20.2091 18 18V12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Education
+            </h3>
+          </div>
+          <div class="resume-entries">
+            <div class="resume-entry">
+                <h4>BSc in Computer Science</h4>
+                <p class="resume-meta">University of Witwatersrand | 2020 - 2023</p>
+                <ul>
+                  <li>Specialized in Software Engineering, Database Systems, and Object-Oriented Programming.</li>
+                  <li>Final Year Project: A web-based inventory management system built with ASP.NET Core and SQL Server.</li>
+                  <li>Relevant Coursework: Data Structures & Algorithms, .NET Development, Database Design, Software Architecture.</li>
+                </ul>
+            </div>
+            <div class="resume-entry">
+                <h4>Microsoft Certified: Azure Fundamentals</h4>
+                <p class="resume-meta">Microsoft | 2024</p>
+                <ul>
+                  <li>Demonstrated foundational knowledge of cloud concepts and Azure services, including compute, storage, and networking.</li>
+                  <li>Completed hands-on labs for deploying and managing resources in Azure.</li>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills-section animated-section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skills-category">
+          <h3>Languages & Databases</h3>
+          <div class="skills-list">
+            <span class="skill-tag">C#</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">HTML5 & CSS3</span>
+            <span class="skill-tag">TypeScript</span>
+          </div>
+        </div>
+        <div class="skills-category">
+          <h3>.NET & Frameworks</h3>
+          <div class="skills-list">
+            <span class="skill-tag">.NET Core / .NET 8</span>
+            <span class="skill-tag">ASP.NET Core MVC</span>
+            <span class="skill-tag">ASP.NET Core Web API</span>
+            <span class="skill-tag">Entity Framework Core</span>
+            <span class="skill-tag">React.js</span>
+          </div>
+        </div>
+        <div class="skills-category">
+          <h3>Databases & ORMs</h3>
+          <div class="skills-list">
+            <span class="skill-tag">SQL Server</span>
+            <span class="skill-tag">Entity Framework Core</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">Dapper</span>
+          </div>
+        </div>
+        <div class="skills-category">
+          <h3>Tools & Platforms</h3>
+          <div class="skills-list">
+            <span class="skill-tag">Visual Studio</span>
+            <span class="skill-tag">Azure DevOps</span>
+            <span class="skill-tag">Git & GitHub</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Postman</span>
+          </div>
+        </div>
+        <div class="skills-category">
+          <h3>Cloud & Architecture</h3>
+          <div class="skills-list">
+            <span class="skill-tag">Azure App Service</span>
+            <span class="skill-tag">Azure SQL Database</span>
+            <span class="skill-tag">RESTful APIs</span>
+            <span class="skill-tag">Microservices</span>
+            <span class="skill-tag">CI/CD</span>
+          </div>
+        </div>
+        <div class="skills-category">
+          <h3>Soft Skills</h3>
+          <div class="skills-list">
+            <span class="skill-tag">Agile Methodologies</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Team Collaboration</span>
+            <span class="skill-tag">Communication</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects-section animated-section">
+      <h2>My Work</h2>
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all" data-magnetic>All</button>
+        <button class="filter-btn" data-filter="web-app" data-magnetic>Web Apps</button>
+        <button class="filter-btn" data-filter="api" data-magnetic>APIs</button>
+      </div>
+      <div class="project-grid">
+        <article class="project-card featured" data-category="web-app" data-tilt>
+          <div class="project-image-container">
+            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=500&auto=format&fit=crop&q=60" alt="E-Commerce Dashboard Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3>E-Commerce Admin Portal</h3>
+                <p>Featured Project</p>
+            </div>
+          </div>
+          <div class="project-content-hidden">
+             <div class="gallery">
+                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=500&auto=format&fit=crop&q=60" alt="E-Commerce Dashboard Screenshot 1">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60" alt="E-Commerce Dashboard Screenshot 2">
+             </div>
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>A full-stack web application for managing e-commerce operations. The platform features product and inventory management, order processing, and a reporting dashboard with sales analytics. Hosted on Azure App Service.</p>
+                <h4>Technical Breakdown</h4>
+                <p>The back-end is a secure RESTful API built with ASP.NET Core, utilizing a repository pattern for data access. It connects to an Azure SQL Database via Entity Framework Core. The front-end is built with React and communicates with the API to provide a dynamic user experience.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">ASP.NET Core</span>
+                  <span class="tech-tag">React.js</span>
+                  <span class="tech-tag">Azure SQL</span>
+                  <span class="tech-tag">EF Core</span>
+                  <span class="tech-tag">Azure App Service</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/ecommerce-portal" target="_blank" rel="noopener noreferrer" class="cta-button project-button">View Code</a>
+                  <a href="https://ecommerce-portal-demo.azurewebsites.net/" target="_blank" rel="noopener noreferrer" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="api" data-tilt>
+          <div class="project-image-container">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60" alt="API Documentation Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3>Task Management API</h3>
+            </div>
+          </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>A comprehensive RESTful API designed for a task management system. It provides endpoints for user authentication, task creation, assignment, and status tracking. The API is documented with Swagger/OpenAPI for clear and easy consumption.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with .NET 8 Web API, this project implements JWT for secure, token-based authentication and authorization. It follows a clean architecture pattern for separation of concerns and uses Dapper for high-performance data access to a PostgreSQL database.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET 8 Web API</span>
+                  <span class="tech-tag">PostgreSQL</span>
+                  <span class="tech-tag">JWT</span>
+                  <span class="tech-tag">Swagger</span>
+                  <span class="tech-tag">Dapper</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/task-management-api" target="_blank" rel="noopener noreferrer" class="cta-button project-button">View Code</a>
+                  <a href="https://task-api-demo.azurewebsites.net/swagger" target="_blank" rel="noopener noreferrer" class="cta-button project-button secondary">API Docs</a>
+                </div>
+             </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="web-app" data-tilt>
+          <div class="project-image-container">
+            <img src="https://storage.googleapis.com/media.landbot.io/1831/channels/XW5LROH0J7V47BOU4T1ZK93O3X1T7DSA.png" alt="AI Chatbot Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3>AI Customer Service Bot</h3>
+            </div>
+          </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>An intelligent chatbot integrated into a web application to handle customer support queries. The bot can answer frequently asked questions, create support tickets, and escalate complex issues to a human agent.</p>
+                <h4>Technical Breakdown</h4>
+                <p>This project uses a .NET Core worker service to process messages and integrate with the Microsoft Bot Framework. The natural language understanding is powered by Azure AI Language services. The front-end widget is a simple JavaScript component that interacts with the back-end via a SignalR hub for real-time communication.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET Core</span>
+                  <span class="tech-tag">Azure AI Services</span>
+                  <span class="tech-tag">Microsoft Bot Framework</span>
+                  <span class="tech-tag">SignalR</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
+                  <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+      </div>
+    </section>
+    
+    <section id="learning" class="learning-section animated-section">
+        <h2>Currently Learning</h2>
+        <div class="cli-container">
+            <div class="cli-header">
+                <div class="cli-buttons">
+                    <span class="cli-btn close"></span>
+                    <span class="cli-btn minimize"></span>
+                    <span class="cli-btn expand"></span>
+                </div>
+                <div class="cli-title">bash</div>
+            </div>
+            <div class="cli-body" id="cli-body">
+                </div>
+        </div>
+    </section>
+  </main>
+
+  <div id="contact-modal" class="contact-modal" aria-hidden="true">
+    <div class="modal-overlay" data-close-modal></div>
+    <div class="modal-content">
+        <button class="modal-close-button" data-close-modal aria-label="Close contact form">
+            <i class="bi bi-x-lg"></i>
+        </button>
+        <div id="contact" class="contact-section" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Let's Connect</h2>
+            <p>If you'd like to work together or have any questions, I would love to hear from you.</p>
+
+            <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="contact" />
+                <p class="hidden" style="display:none;">
+                    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                </p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-name">Name</label>
+                        <input type="text" id="modal-name" name="name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-email">Email</label>
+                        <input type="email" id="modal-email" name="email" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modal-message">Message</label>
+                    <textarea id="modal-message" name="message" rows="5" required></textarea>
+                </div>
+                <div class="form-status" aria-live="polite"></div>
+                <button type="submit" class="cta-button primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+  </div>
+
+  <div id="project-modal" class="project-modal" aria-hidden="true">
+      <div class="modal-overlay" data-close-project-modal></div>
+      <div class="project-modal-content">
+          <button class="modal-close-button" data-close-project-modal aria-label="Close project details">
+              <i class="bi bi-x-lg"></i>
+          </button>
+          <div class="project-modal-body">
+              </div>
+      </div>
+  </div>
+
+  <div id="command-palette" class="command-palette" aria-hidden="true">
+      <div class="modal-overlay" data-close-cmd></div>
+      <div class="command-palette-content">
+          <div class="command-input-wrapper">
+              <i class="bi bi-search"></i>
+              <input type="text" id="command-input" placeholder="Type a command or search...">
+              <div class="keyboard-shortcut">ESC</div>
+          </div>
+          <ul id="command-results" class="command-results">
+              </ul>
+      </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; <span id="copyright-year">2025</span> Cynthia Motaung. All rights reserved.</p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul class="footer-links-list">
+          <li><a href="https://github.com/Cynthia-Motaung" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/cynthia-motaung/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+  <script src="script.js" defer></script>
+</body>
+
+</html>
