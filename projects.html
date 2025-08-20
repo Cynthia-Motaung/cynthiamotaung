@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cynthia | Projects</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    body {
+      background: #0a0a0a;
+      color: #f5f5f5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header */
+    header {
+      padding: 30px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #f5f5f5;
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: #f5f5f5;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 0 60px;
+      position: relative;
+    }
+    
+    .hero-content {
+      max-width: 650px;
+      z-index: 2;
+    }
+    
+    .hero-title {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    
+    .hero-subtitle {
+      font-size: 20px;
+      color: #aaa;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .btn {
+      padding: 14px 30px;
+      border-radius: 30px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-primary {
+      background: #f5f5f5;
+      color: #0a0a0a;
+    }
+    
+    .btn-primary:hover {
+      background: #e5e5e5;
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      border: 1px solid #444;
+      color: #f5f5f5;
+    }
+    
+    .btn-secondary:hover {
+      border-color: #f5f5f5;
+      transform: translateY(-2px);
+    }
+    
+    /* Projects Section */
+    .section {
+      padding: 100px 0;
+    }
+    
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 60px;
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 30px;
+    }
+    
+    .project-card {
+      background: #151515;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .project-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+    
+    .project-content {
+      padding: 25px;
+    }
+    
+    .project-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .project-desc {
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .project-tag {
+      background: #252525;
+      color: #ccc;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+    
+    /* Chatbot Section */
+    .chatbot-section {
+      background: #151515;
+      border-radius: 16px;
+      padding: 50px;
+      margin: 100px 0;
+    }
+    
+    .chatbot-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .chatbot-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .chatbot-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .chatbot-subtitle {
+      color: #aaa;
+      font-size: 18px;
+    }
+    
+    .chat-window {
+      background: #1a1a1a;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 450px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .chat-messages {
+      flex: 1;
+      padding: 25px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .message {
+      max-width: 70%;
+      padding: 15px 20px;
+      border-radius: 18px;
+      line-height: 1.5;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .bot-message {
+      background: #252525;
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+    }
+    
+    .user-message {
+      background: #404040;
+      border-bottom-right-radius: 5px;
+      align-self: flex-end;
+    }
+    
+    .chat-input-container {
+      display: flex;
+      padding: 20px;
+      border-top: 1px solid #2a2a2a;
+      background: #1a1a1a;
+    }
+    
+    .chat-input {
+      flex: 1;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 30px;
+      background: #252525;
+      color: #f5f5f5;
+      font-size: 16px;
+      outline: none;
+    }
+    
+    .send-button {
+      background: #f5f5f5;
+      color: #0a0a0a;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-left: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s;
+    }
+    
+    .send-button:hover {
+      background: #e5e5e5;
+      transform: scale(1.05);
+    }
+    
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .suggestion-chip {
+      background: #252525;
+      color: #f5f5f5;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .suggestion-chip:hover {
+      background: #353535;
+      transform: translateY(-2px);
+    }
+    
+    /* Footer */
+    footer {
+      padding: 60px 0;
+      text-align: center;
+      border-top: 1px solid #252525;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: #f5f5f5;
+    }
+    
+    .copyright {
+      color: #666;
+      font-size: 14px;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 48px;
+      }
+      
+      .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero-title {
+        font-size: 36px;
+      }
+      
+      .hero-subtitle {
+        font-size: 18px;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .chatbot-section {
+        padding: 30px 20px;
+      }
+      
+      .message {
+        max-width: 85%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Cynthia</a>
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#chat">Ask About Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Project Portfolio</h1>
+        <p class="hero-subtitle">Explore my technical projects and ask me anything about the development process, challenges faced, and solutions implemented.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fas fa-briefcase"></i> View Projects
+          </a>
+          <a href="#chat" class="btn btn-secondary">
+            <i class="fas fa-comment"></i> Ask About Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title">My Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card" data-project="lotus">
+          <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Lotus Journal" class="project-img">
+          <div class="project-content">
+            <h3 class="project-title">Lotus Journal</h3>
+            <p class="project-desc">A mindfulness journaling app with analytics and mood tracking features.</p>
+            <div class="project-tags">
+              <span class="project-tag">React</span>
+              <span class="project-tag">Node.js</span>
+              <span class="project-tag">MongoDB</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card" data-project="stravalyze">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Stravalyze" class="project-img">
+          <div class="project-content">
+            <h3 class="project-title">Stravalyze</h3>
+            <p class="project-desc">Analytics platform for fitness data with personalized recommendations.</p>
+            <div class="project-tags">
+              <span class="project-tag">Vue.js</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Data Visualization</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card" data-project="challenge">
+          <img src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Challenge Tracker" class="project-img">
+          <div class="project-content">
+            <h3 class="project-title">Challenge Tracker</h3>
+            <p class="project-desc">Goal-setting and progress monitoring tool with social accountability features.</p>
+            <div class="project-tags">
+              <span class="project-tag">Angular</span>
+              <span class="project-tag">Firebase</span>
+              <span class="project-tag">.NET Core</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chatbot Section -->
+  <section id="chat" class="chatbot-section">
+    <div class="chatbot-container">
+      <div class="chatbot-header">
+        <h2 class="chatbot-title">Ask About My Projects</h2>
+        <p class="chatbot-subtitle">I can tell you about the problem each project solved, the tech stack, challenges I faced, and how I solved them</p>
+      </div>
+      
+      <div class="chat-window">
+        <div class="chat-messages" id="chat-messages">
+          <div class="message bot-message">
+            Hi there! I'm Julia. I can tell you all about my projects. You can ask me about:
+            <br><br>
+            • The problem a project was solving<br>
+            • The tech stack I used<br>
+            • Challenges I faced during development<br>
+            • How I solved those challenges<br>
+            • Anything else about my projects!
+            <br><br>
+            Try asking about Lotus Journal, Stravalyze, or Challenge Tracker.
+          </div>
+        </div>
+        
+        <div class="chat-input-container">
+          <input type="text" class="chat-input" placeholder="Ask about a project (e.g., What challenges did you face with Lotus Journal?)" id="chat-input">
+          <button class="send-button" id="send-button">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="suggestions">
+        <div class="suggestion-chip" data-query="What problem was Lotus Journal solving?">Lotus Journal: Problem</div>
+        <div class="suggestion-chip" data-query="What tech stack did you use for Stravalyze?">Stravalyze: Tech Stack</div>
+        <div class="suggestion-chip" data-query="What challenges did you face with Challenge Tracker?">Challenge Tracker: Challenges</div>
+        <div class="suggestion-chip" data-query="Tell me about all your projects">All Projects</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#"><i class="fab fa-github"></i> GitHub</a>
+        <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="#"><i class="fab fa-dribbble"></i> Dribbble</a>
+      </div>
+      <p class="copyright">© 2023 Cynthia Motaung. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const chatMessages = document.getElementById('chat-messages');
+      const chatInput = document.getElementById('chat-input');
+      const sendButton = document.getElementById('send-button');
+      const suggestionChips = document.querySelectorAll('.suggestion-chip');
+      const projectCards = document.querySelectorAll('.project-card');
+      
+      // Project database with detailed information
+      const projects = {
+        lotus: {
+          name: "Lotus Journal",
+          problem: "Lotus Journal was created to solve the problem of fragmented mindfulness practices. Many people use separate apps for journaling, mood tracking, and meditation, which makes it difficult to see correlations between these activities and mental wellbeing.",
+          solution: "I created an all-in-one platform that combines journaling, mood tracking, and meditation analytics with beautiful data visualizations to help users understand patterns in their mental health.",
+          stack: ["React", "Redux", "Node.js", "Express", "MongoDB", "D3.js", "JWT Authentication"],
+          challenges: [
+            "Creating a responsive rich-text editor that worked seamlessly across devices",
+            "Designing data visualization that was both informative and calming",
+            "Implementing secure user authentication with privacy in mind"
+          ],
+          solutions: [
+            "I built a custom editor using Draft.js with plugins for media embedding and markdown support",
+            "I created custom D3.js visualizations with a soothing color palette and intuitive UX",
+            "I implemented JWT with refresh tokens and encryption for journal entries"
+          ],
+          outcome: "The app has helped over 5,000 users track their mental health journey and identify patterns in their mood and activities."
+        },
+        stravalyze: {
+          name: "Stravalyze",
+          problem: "Fitness apps like Strava provide tons of data but often lack meaningful insights. Users get raw numbers but don't know how to interpret them or make actionable changes to their training.",
+          solution: "Stravalyze analyzes fitness data to provide personalized recommendations, trend analysis, and performance predictions to help athletes train smarter.",
+          stack: ["Vue.js", "Python", "Flask", "PostgreSQL", "Pandas", "TensorFlow.js", "OAuth2"],
+          challenges: [
+            "Processing large datasets efficiently in the browser",
+            "Creating accurate performance prediction algorithms",
+            "Integrating with multiple fitness APIs with different authentication methods"
+          ],
+          solutions: [
+            "I implemented Web Workers for background data processing and used IndexedDB for local storage",
+            "I developed a hybrid algorithm using statistical analysis and simple machine learning models",
+            "I created a unified OAuth2 flow that works with Strava, Garmin, and Fitbit APIs"
+          ],
+          outcome: "Stravalyze helps athletes reduce injury risk by 23% and improve performance through data-driven insights."
+        },
+        challenge: {
+          name: "Challenge Tracker",
+          problem: "People often struggle with accountability when pursuing personal goals. Existing habit trackers are too individual-focused and don't leverage social accountability effectively.",
+          solution: "Challenge Tracker is a goal-setting platform that combines personal progress tracking with social features, group challenges, and accountability partners.",
+          stack: ["Angular", "Firebase", ".NET Core", "Firestore", "Google Cloud Functions", "Stripe API"],
+          challenges: [
+            "Real-time updates for group challenge progress",
+            " Designing a fair verification system for completed tasks",
+            "Handling payments for premium challenges"
+          ],
+          solutions: [
+            "I used Firebase Realtime Database for instant updates across all clients",
+            "I implemented a hybrid verification system with photo evidence and peer validation",
+            "I integrated Stripe with Firebase Cloud Functions for secure payment processing"
+          ],
+          outcome: "Users who participate in challenges are 3.2x more likely to complete their goals compared to using individual habit trackers."
+        }
+      };
+      
+      // Add message to chat
+      function addMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = isUser ? 'message user-message' : 'message bot-message';
+        messageDiv.innerHTML = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      
+      // Get bot response based on project query
+      function getResponse(message) {
+        const lowerMsg = message.toLowerCase();
+        let response = "";
+        
+        // Check which project is being asked about
+        let projectKey = null;
+        for (const [key, project] of Object.entries(projects)) {
+          if (lowerMsg.includes(project.name.toLowerCase())) {
+            projectKey = key;
+            break;
+          }
+        }
+        
+        // If no specific project mentioned, give general response
+        if (!projectKey) {
+          if (lowerMsg.includes("all project") || lowerMsg.includes("each project") || 
+              lowerMsg.includes("every project") || lowerMsg.includes("what project")) {
+            response = "I've worked on several projects:<br><br>";
+            for (const [key, project] of Object.entries(projects)) {
+              response += `<strong>${project.name}</strong>: ${project.solution.substring(0, 100)}...<br>`;
+            }
+            response += "<br>Ask about a specific project to learn more details!";
+            return response;
+          }
+          
+          return "I'm not sure which project you're asking about. I can tell you about Lotus Journal, Stravalyze, or Challenge Tracker. Which one interests you?";
+        }
+        
+        const project = projects[projectKey];
+        
+        // Determine what aspect of the project is being asked about
+        if (lowerMsg.includes("problem") || lowerMsg.includes("solve") || lowerMsg.includes("purpose")) {
+          response = `<strong>${project.name} - The Problem It Solved:</strong><br><br>${project.problem}`;
+        } 
+        else if (lowerMsg.includes("stack") || lowerMsg.includes("tech") || lowerMsg.includes("technology") || 
+                 lowerMsg.includes("built") || lowerMsg.includes("use") || lowerMsg.includes("language")) {
+          response = `<strong>${project.name} - Tech Stack:</strong><br><br>I used ${project.stack.join(", ")}.`;
+        } 
+        else if (lowerMsg.includes("challenge") || lowerMsg.includes("difficult") || lowerMsg.includes("hard") || 
+                 lowerMsg.includes("issue") || lowerMsg.includes("problem") || lowerMsg.includes("struggle")) {
+          response = `<strong>${project.name} - Challenges I Faced:</strong><br><br>`;
+          project.challenges.forEach((challenge, i) => {
+            response += `${i+1}. ${challenge}<br>`;
+          });
+        } 
+        else if (lowerMsg.includes("solution") || lowerMsg.includes("solve") || lowerMsg.includes("fix") || 
+                 lowerMsg.includes("overcome") || lowerMsg.includes("address")) {
+          response = `<strong>${project.name} - How I Solved Challenges:</strong><br><br>`;
+          project.solutions.forEach((solution, i) => {
+            response += `${i+1}. ${solution}<br>`;
+          });
+        } 
+        else if (lowerMsg.includes("outcome") || lowerMsg.includes("result") || lowerMsg.includes("impact")) {
+          response = `<strong>${project.name} - Outcome:</strong><br><br>${project.outcome}`;
+        }
+        else {
+          // General project overview
+          response = `<strong>${project.name}</strong><br><br>
+            <strong>Problem:</strong> ${project.problem.substring(0, 150)}...<br><br>
+            <strong>Solution:</strong> ${project.solution.substring(0, 150)}...<br><br>
+            <strong>Tech Stack:</strong> ${project.stack.slice(0, 3).join(", ")}...<br><br>
+            Ask me specifically about the problem, tech stack, challenges, or solutions for this project!`;
+        }
+        
+        return response;
+      }
+      
+      // Handle sending message
+      function handleSendMessage() {
+        const message = chatInput.value.trim();
+        if (message) {
+          addMessage(message, true);
+          chatInput.value = '';
+          
+          // Show typing indicator
+          const typingIndicator = document.createElement('div');
+          typingIndicator.className = 'message bot-message';
+          typingIndicator.id = 'typing-indicator';
+          typingIndicator.innerHTML = '...';
+          chatMessages.appendChild(typingIndicator);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          
+          // Simulate typing delay
+          setTimeout(() => {
+            document.getElementById('typing-indicator').remove();
+            const response = getResponse(message);
+            addMessage(response);
+          }, 1500);
+        }
+      }
+      
+      // Event listeners
+      sendButton.addEventListener('click', handleSendMessage);
+      
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          handleSendMessage();
+        }
+      });
+      
+      suggestionChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          const query = chip.getAttribute('data-query');
+          chatInput.value = query;
+          handleSendMessage();
+        });
+      });
+      
+      // Make project cards clickable to ask about that project
+      projectCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const projectKey = card.getAttribute('data-project');
+          const projectName = projects[projectKey].name;
+          chatInput.value = `Tell me about ${projectName}`;
+          handleSendMessage();
+          
+          // Scroll to chat section
+          document.getElementById('chat').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
