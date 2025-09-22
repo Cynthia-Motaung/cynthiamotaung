@@ -525,3 +525,181 @@ window.addEventListener('load', () => {
     loader.classList.add('hidden');
   }
 });
+
+// Add this to your existing script.js - replace or enhance existing scroll-related code
+
+// Enhanced scroll-triggered animations with throttling
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  }
+}
+
+// Improved intersection observer with better performance
+const createScrollObserver = (threshold = 0.1, rootMargin = '0px') => {
+  return new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, {
+    threshold: threshold,
+    rootMargin: rootMargin
+  });
+};
+
+// Initialize all scroll observers
+const initScrollAnimations = () => {
+  // Main sections observer
+  const sectionObserver = createScrollObserver(0.1, '0px 0px -10% 0px');
+  document.querySelectorAll('.animated-section').forEach(section => {
+    sectionObserver.observe(section);
+  });
+
+  // Resume entries with staggered animation
+  const resumeObserver = createScrollObserver(0.1, '0px 0px -20% 0px');
+  document.querySelectorAll('.resume-entry').forEach((entry, index) => {
+    resumeObserver.observe(entry);
+  });
+
+  // Project cards animation
+  const projectObserver = createScrollObserver(0.1, '0px 0px -10% 0px');
+  document.querySelectorAll('.project-card').forEach((card, index) => {
+    card.style.transitionDelay = `${index * 0.1}s`;
+    projectObserver.observe(card);
+  });
+};
+
+// Smooth scroll to anchor links
+const initSmoothScroll = () => {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const headerHeight = document.querySelector('.site-header').offsetHeight;
+        const targetPosition = targetElement.offsetTop - headerHeight - 20;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Update URL without jumping
+        history.pushState(null, null, targetId);
+      }
+    });
+  });
+};
+
+// Progress indicator (optional)
+const createScrollProgress = () => {
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  progressBar.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--accent-gradient);
+    z-index: 1000;
+    transition: width 0.1s ease;
+  `;
+  document.body.appendChild(progressBar);
+
+  const updateProgressBar = throttle(() => {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const scrollPosition = window.scrollY;
+    const progress = (scrollPosition / documentHeight) * 100;
+    progressBar.style.width = `${progress}%`;
+  }, 10);
+
+  window.addEventListener('scroll', updateProgressBar);
+};
+
+// Parallax scroll effect
+const initParallaxScroll = () => {
+  const parallaxElements = document.querySelectorAll('[data-parallax]');
+  
+  const handleParallax = throttle(() => {
+    const scrollPosition = window.scrollY;
+    
+    parallaxElements.forEach(element => {
+      const speed = element.dataset.parallaxSpeed || 0.5;
+      const yPos = -(scrollPosition * speed);
+      element.style.transform = `translateY(${yPos}px)`;
+    });
+  }, 10);
+
+  window.addEventListener('scroll', handleParallax);
+};
+
+// Update active nav link with better performance
+const updateActiveNavLink = throttle(() => {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const scrollPosition = window.scrollY + 100;
+
+  let currentSection = '';
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    
+    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      currentSection = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${currentSection}`) {
+      link.classList.add('active');
+    }
+  });
+}, 100);
+
+// Initialize all scroll functionalities
+document.addEventListener('DOMContentLoaded', () => {
+  // Your existing DOMContentLoaded code...
+  
+  // Add these new initializations
+  initScrollAnimations();
+  initSmoothScroll();
+  createScrollProgress();
+  initParallaxScroll();
+  
+  // Enhanced scroll event listener
+  window.addEventListener('scroll', updateActiveNavLink);
+});
+
+// Handle page load scroll position
+window.addEventListener('load', () => {
+  // Check if URL has hash and scroll to it
+  if (window.location.hash) {
+    const targetElement = document.querySelector(window.location.hash);
+    if (targetElement) {
+      setTimeout(() => {
+        const headerHeight = document.querySelector('.site-header').offsetHeight;
+        window.scrollTo({
+          top: targetElement.offsetTop - headerHeight - 20,
+          behavior: 'smooth'
+        });
+      }, 100);
+    }
+  }
+});
