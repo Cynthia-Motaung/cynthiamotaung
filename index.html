@@ -25,7 +25,7 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" as="style">
   <link rel="preload" href="assets/logo.png" as="image">
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -103,7 +103,7 @@
       <h2>About Me</h2>
       <div class="about-content">
         <figure class="profile-figure">
-          <img src="Media.jpg" alt="Profile Picture of Cynthia Motaung, a .NET Developer" class="profile-pic" loading="lazy" width="150" height="150"/>
+          <img src="/assets/images/Media.jpg" alt="Profile Picture of Cynthia Motaung, a .NET Developer" class="profile-pic" loading="lazy" width="150" height="150"/>
           <figcaption class="sr-only">Cynthia Motaung's profile picture</figcaption>
         </figure>
         <div class="about-text">
@@ -131,16 +131,6 @@
         </h3>
       </div>
       <div class="resume-entries">
-        <!--<div class="resume-entry">
-          <h4>Junior .NET Developer</h4>
-          <p class="resume-meta">Innovatech Solutions | Jan 2024 - Present</p>
-          <ul>
-            <li>Develop and maintain web applications using ASP.NET Core, C#, and Entity Framework Core, serving over 10,000 users.</li>
-            <li>Design and implement RESTful APIs to support front-end applications and facilitate third-party integrations.</li>
-            <li>Write and optimize SQL queries and stored procedures for SQL Server to improve data retrieval performance.</li>
-            <li>Collaborate in an Agile team, participating in sprint planning, code reviews, and daily stand-ups to ensure timely delivery of features.</li>
-          </ul>
-        </div>-->
         <div class="resume-entry">
           <h4>Software Development Intern</h4>
           <p class="resume-meta">CAPACITI | April 2025 - present</p>
@@ -152,7 +142,6 @@
         </div>
       </div>
       
-      <!-- SKILLS SECTION ADDED HERE -->
       <div class="resume-category">
         <h3>
             <svg class="resume-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -206,7 +195,7 @@
             </ul>
         </div>
         <div class="resume-entry">
-            <h4>BSc in Computer Science</h4>
+            <h4>NDip in Information Technology</h4>
             <p class="resume-meta">Nelson Mandela University | 2020 - 2024</p>
             <ul>
               <li>Specialized in Software Engineering, Database Systems, and Object-Oriented Programming.</li>
@@ -225,41 +214,16 @@
       <h2>My Work</h2>
       <div class="project-filters">
         <button class="filter-btn active" data-filter="all" data-magnetic>All</button>
-        <button class="filter-btn" data-filter="web-app" data-magnetic>Web Apps</button>
-        <button class="filter-btn" data-filter="api" data-magnetic>APIs</button>
+         <button class="filter-btn" data-filter="ai" data-magnetic>AI</button>
+         <button class="filter-btn" data-filter="back-end" data-magnetic>Back End</button>
+        <button class="filter-btn" data-filter="front-end" data-magnetic>Front End</button>
+        <button class="filter-btn" data-filter="full-stack" data-magnetic>Full Stack</button>
+       
       </div>
       <div class="project-grid">
-        <article class="project-card featured" data-category="web-app" data-tilt>
-          <div class="project-image-container">
-            <img src="/declutter.PNG" alt="E-Commerce Dashboard Screenshot" loading="lazy">
-             <div class="project-image-overlay">
-                <h3>Declutter</h3>
-                <!--<p>Declutter</p>-->
-            </div>
-          </div>
-          <div class="project-content-hidden">
-             <div class="details">
-                <h4>Project Overview</h4>
-                <p>Declutter is a modern, web-based personal journal application. Its primary purpose is to provide users with a secure, private, and aesthetically pleasing digital space to capture their thoughts, organize reflections, and preserve memories. It positions itself as a direct digital replacement for a traditional paper journal, enhanced with modern organizational features.</p>
-                <h4>Technical Breakdown</h4>
-                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and authorization. It follows the Model-View-Controller (MVC) pattern and uses Entity Framework Core for data access to a SQL Server database, providing a rich, responsive journaling experience.</p>
-                <div class="tech-stack">
-                  <span class="tech-tag">ASP.NET Core MVC</span>
-                  <span class="tech-tag">ASP.NET Core Identity</span>
-                  <span class="tech-tag">EF Core</span>
-                  <span class="tech-tag">SQL Server</span>
-                  <span class="tech-tag">jQuery</span>
-                  <span class="tech-tag">Bootstrap</span>
-                </div>
-                <div class="buttons">
-                  <a href="https://github.com/Cynthia-Motaung/declutter" target="_blank" rel="noopener noreferrer" class="cta-button project-button">View Code</a>
-                  <a href="https://ecommerce-portal-demo.azurewebsites.net/" target="_blank" rel="noopener noreferrer" class="cta-button project-button secondary">Live Demo</a>
-                </div>
-             </div>
-          </div>
-        </article>
+        
 
-        <article class="project-card" data-category="api" data-tilt>
+        <article class="project-card" data-category="back-end" data-tilt>
           <div class="project-image-container">
             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60" alt="API Documentation Screenshot" loading="lazy">
              <div class="project-image-overlay">
@@ -287,7 +251,7 @@
           </div>
         </article>
 
-        <article class="project-card" data-category="web-app" data-tilt>
+        <article class="project-card" data-category="full-stack" data-tilt>
           <div class="project-image-container">
             <img src="https://storage.googleapis.com/media.landbot.io/1831/channels/XW5LROH0J7V47BOU4T1ZK93O3X1T7DSA.png" alt="AI Chatbot Screenshot" loading="lazy">
              <div class="project-image-overlay">
@@ -309,6 +273,276 @@
                 <div class="buttons">
                   <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
                   <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="back-end" data-tilt>
+          <div class="project-image-container">
+            <img src="/assets/images/Challenges.PNG" alt="AI Chatbot Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3> Challenges</h3>
+            </div>
+          </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>CycleCloud is currently a powerful and well-structured backend API. It has all the foundational elements a secure database, a logical data model, and authentication—required to support a full-stack application.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and role-based authorization. It follows a service-oriented architecture for clear separation of concerns and uses Entity Framework Core for data access to a PostgreSQL database, providing a robust foundation for bicycle rental management.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET Core</span>
+                  <span class="tech-tag">Azure AI Services</span>
+                  <span class="tech-tag">Microsoft Bot Framework</span>
+                  <span class="tech-tag">SignalR</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
+                  <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+        
+        <article class="project-card" data-category="front-end" data-tilt>
+          <div class="project-image-container">
+            <img src="/assets/images/salus.PNG" alt="AI Chatbot Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3> SALUS</h3>
+            </div>
+          </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>CycleCloud is currently a powerful and well-structured backend API. It has all the foundational elements a secure database, a logical data model, and authentication—required to support a full-stack application.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and role-based authorization. It follows a service-oriented architecture for clear separation of concerns and uses Entity Framework Core for data access to a PostgreSQL database, providing a robust foundation for bicycle rental management.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET Core</span>
+                  <span class="tech-tag">Azure AI Services</span>
+                  <span class="tech-tag">Microsoft Bot Framework</span>
+                  <span class="tech-tag">SignalR</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
+                  <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="front-end" data-tilt>
+          <div class="project-image-container">
+            <img src="/assets/images/cmotaung.PNG" alt="AI Chatbot Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3> Personal Portfolio</h3>
+            </div>
+          </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>CycleCloud is currently a powerful and well-structured backend API. It has all the foundational elements a secure database, a logical data model, and authentication—required to support a full-stack application.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and role-based authorization. It follows a service-oriented architecture for clear separation of concerns and uses Entity Framework Core for data access to a PostgreSQL database, providing a robust foundation for bicycle rental management.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET Core</span>
+                  <span class="tech-tag">Azure AI Services</span>
+                  <span class="tech-tag">Microsoft Bot Framework</span>
+                  <span class="tech-tag">SignalR</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
+                  <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="front-end" data-tilt>
+          <div class="project-image-container">
+            <img src="/assets/images/py.png" alt="AI Chatbot Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3> Team Portfolio</h3>
+            </div>
+          </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>CycleCloud is currently a powerful and well-structured backend API. It has all the foundational elements a secure database, a logical data model, and authentication—required to support a full-stack application.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and role-based authorization. It follows a service-oriented architecture for clear separation of concerns and uses Entity Framework Core for data access to a PostgreSQL database, providing a robust foundation for bicycle rental management.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET Core</span>
+                  <span class="tech-tag">Azure AI Services</span>
+                  <span class="tech-tag">Microsoft Bot Framework</span>
+                  <span class="tech-tag">SignalR</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
+                  <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="ai" data-tilt>
+          <div class="project-image-container">
+            <img src="/assets/images/resumeBuilder.png" alt="AI Chatbot Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3>Resume Builder</h3>
+          </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>CycleCloud is currently a powerful and well-structured backend API. It has all the foundational elements a secure database, a logical data model, and authentication—required to support a full-stack application.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and role-based authorization. It follows a service-oriented architecture for clear separation of concerns and uses Entity Framework Core for data access to a PostgreSQL database, providing a robust foundation for bicycle rental management.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET Core</span>
+                  <span class="tech-tag">Azure AI Services</span>
+                  <span class="tech-tag">Microsoft Bot Framework</span>
+                  <span class="tech-tag">SignalR</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
+                  <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+
+          <article class="project-card" data-category="full-stack" data-tilt>
+          <div class="project-image-container">
+            <img src="/assets/images/bms.PNG" alt="AI Chatbot Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3>Bank management system</h3>
+            </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>CycleCloud is currently a powerful and well-structured backend API. It has all the foundational elements a secure database, a logical data model, and authentication—required to support a full-stack application.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and role-based authorization. It follows a service-oriented architecture for clear separation of concerns and uses Entity Framework Core for data access to a PostgreSQL database, providing a robust foundation for bicycle rental management.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET Core</span>
+                  <span class="tech-tag">Azure AI Services</span>
+                  <span class="tech-tag">Microsoft Bot Framework</span>
+                  <span class="tech-tag">SignalR</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
+                  <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="ai" data-tilt>
+          <div class="project-image-container">
+            <img src="https://storage.googleapis.com/media.landbot.io/1831/channels/XW5LROH0J7V47BOU4T1ZK93O3X1T7DSA.png" alt="AI Chatbot Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3>Oralytics</h3>
+          </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>CycleCloud is currently a powerful and well-structured backend API. It has all the foundational elements a secure database, a logical data model, and authentication—required to support a full-stack application.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and role-based authorization. It follows a service-oriented architecture for clear separation of concerns and uses Entity Framework Core for data access to a PostgreSQL database, providing a robust foundation for bicycle rental management.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET Core</span>
+                  <span class="tech-tag">Azure AI Services</span>
+                  <span class="tech-tag">Microsoft Bot Framework</span>
+                  <span class="tech-tag">SignalR</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
+                  <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+
+
+        <article class="project-card" data-category="ai" data-tilt>
+          <div class="project-image-container">
+            <img src="/assets/images/chatbot.png" alt="AI Chatbot Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3>AI Tutor Chatbot</h3>
+          </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>CycleCloud is currently a powerful and well-structured backend API. It has all the foundational elements a secure database, a logical data model, and authentication—required to support a full-stack application.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and role-based authorization. It follows a service-oriented architecture for clear separation of concerns and uses Entity Framework Core for data access to a PostgreSQL database, providing a robust foundation for bicycle rental management.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET Core</span>
+                  <span class="tech-tag">Azure AI Services</span>
+                  <span class="tech-tag">Microsoft Bot Framework</span>
+                  <span class="tech-tag">SignalR</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
+                  <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+        
+
+        <article class="project-card" data-category="back-end" data-tilt>
+          <div class="project-image-container">
+            <img src="/assets/images/movieDB.png" alt="AI Chatbot Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3> Movie Reels</h3>
+            </div>
+          </div>
+           <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>CycleCloud is currently a powerful and well-structured backend API. It has all the foundational elements a secure database, a logical data model, and authentication—required to support a full-stack application.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and role-based authorization. It follows a service-oriented architecture for clear separation of concerns and uses Entity Framework Core for data access to a PostgreSQL database, providing a robust foundation for bicycle rental management.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">.NET Core</span>
+                  <span class="tech-tag">Azure AI Services</span>
+                  <span class="tech-tag">Microsoft Bot Framework</span>
+                  <span class="tech-tag">SignalR</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" class="cta-button project-button">View Code</a>
+                  <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" class="cta-button project-button secondary">Live Demo</a>
+                </div>
+             </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="full-stack" data-tilt>
+          <div class="project-image-container">
+            <img src="/assets/images/declutter.PNG" alt="E-Commerce Dashboard Screenshot" loading="lazy">
+             <div class="project-image-overlay">
+                <h3>Declutter</h3>
+            </div>
+          </div>
+          <div class="project-content-hidden">
+             <div class="details">
+                <h4>Project Overview</h4>
+                <p>Declutter is a modern, web-based personal journal application. Its primary purpose is to provide users with a secure, private, and aesthetically pleasing digital space to capture their thoughts, organize reflections, and preserve memories. It positions itself as a direct digital replacement for a traditional paper journal, enhanced with modern organizational features.</p>
+                <h4>Technical Breakdown</h4>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and authorization. It follows the Model-View-Controller (MVC) pattern and uses Entity Framework Core for data access to a SQL Server database, providing a rich, responsive journaling experience.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">ASP.NET Core MVC</span>
+                  <span class="tech-tag">ASP.NET Core Identity</span>
+                  <span class="tech-tag">EF Core</span>
+                  <span class="tech-tag">SQL Server</span>
+                  <span class="tech-tag">jQuery</span>
+                  <span class="tech-tag">Bootstrap</span>
+                </div>
+                <div class="buttons">
+                  <a href="https://github.com/Cynthia-Motaung/declutter" target="_blank" rel="noopener noreferrer" class="cta-button project-button">View Code</a>
+                  <a href="https://ecommerce-portal-demo.azurewebsites.net/" target="_blank" rel="noopener noreferrer" class="cta-button project-button secondary">Live Demo</a>
                 </div>
              </div>
           </div>
@@ -407,7 +641,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
-  <script src="script.js" defer></script>
+  <script src="/assets/script/script.js" defer></script>
 </body>
 
 </html>
