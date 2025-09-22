@@ -231,31 +231,28 @@
       <div class="project-grid">
         <article class="project-card featured" data-category="web-app" data-tilt>
           <div class="project-image-container">
-            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=500&auto=format&fit=crop&q=60" alt="E-Commerce Dashboard Screenshot" loading="lazy">
+            <img src="/declutter.PNG" alt="E-Commerce Dashboard Screenshot" loading="lazy">
              <div class="project-image-overlay">
-                <h3>E-Commerce Admin Portal</h3>
-                <p>Featured Project</p>
+                <h3>Declutter</h3>
+                <!--<p>Declutter</p>-->
             </div>
           </div>
           <div class="project-content-hidden">
-             <div class="gallery">
-                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=500&auto=format&fit=crop&q=60" alt="E-Commerce Dashboard Screenshot 1">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60" alt="E-Commerce Dashboard Screenshot 2">
-             </div>
              <div class="details">
                 <h4>Project Overview</h4>
-                <p>A full-stack web application for managing e-commerce operations. The platform features product and inventory management, order processing, and a reporting dashboard with sales analytics. Hosted on Azure App Service.</p>
+                <p>Declutter is a modern, web-based personal journal application. Its primary purpose is to provide users with a secure, private, and aesthetically pleasing digital space to capture their thoughts, organize reflections, and preserve memories. It positions itself as a direct digital replacement for a traditional paper journal, enhanced with modern organizational features.</p>
                 <h4>Technical Breakdown</h4>
-                <p>The back-end is a secure RESTful API built with ASP.NET Core, utilizing a repository pattern for data access. It connects to an Azure SQL Database via Entity Framework Core. The front-end is built with React and communicates with the API to provide a dynamic user experience.</p>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and authorization. It follows the Model-View-Controller (MVC) pattern and uses Entity Framework Core for data access to a SQL Server database, providing a rich, responsive journaling experience.</p>
                 <div class="tech-stack">
-                  <span class="tech-tag">ASP.NET Core</span>
-                  <span class="tech-tag">React.js</span>
-                  <span class="tech-tag">Azure SQL</span>
+                  <span class="tech-tag">ASP.NET Core MVC</span>
+                  <span class="tech-tag">ASP.NET Core Identity</span>
                   <span class="tech-tag">EF Core</span>
-                  <span class="tech-tag">Azure App Service</span>
+                  <span class="tech-tag">SQL Server</span>
+                  <span class="tech-tag">jQuery</span>
+                  <span class="tech-tag">Bootstrap</span>
                 </div>
                 <div class="buttons">
-                  <a href="https://github.com/Cynthia-Motaung/ecommerce-portal" target="_blank" rel="noopener noreferrer" class="cta-button project-button">View Code</a>
+                  <a href="https://github.com/Cynthia-Motaung/declutter" target="_blank" rel="noopener noreferrer" class="cta-button project-button">View Code</a>
                   <a href="https://ecommerce-portal-demo.azurewebsites.net/" target="_blank" rel="noopener noreferrer" class="cta-button project-button secondary">Live Demo</a>
                 </div>
              </div>
@@ -272,9 +269,9 @@
            <div class="project-content-hidden">
              <div class="details">
                 <h4>Project Overview</h4>
-                <p>A comprehensive RESTful API designed for a task management system. It provides endpoints for user authentication, task creation, assignment, and status tracking. The API is documented with Swagger/OpenAPI for clear and easy consumption.</p>
+                <p>This project is a Task Management System API, a backend service built with ASP.NET Core 8. It provides a structured and organized way to manage projects, tasks, and team collaboration through a comprehensive set of RESTful endpoints. It serves as the core engine for a potential full-stack task management application.</p>
                 <h4>Technical Breakdown</h4>
-                <p>Built with .NET 8 Web API, this project implements JWT for secure, token-based authentication and authorization. It follows a clean architecture pattern for separation of concerns and uses Dapper for high-performance data access to a PostgreSQL database.</p>
+                <p>Built with ASP.NET Core 8 Web API, this project is designed for future JWT authentication and implements a structured entity model for complex business logic. It uses Entity Framework Core with Code-First Migrations for data access to a SQL Server database and provides comprehensive API documentation via Swagger UI.</p>
                 <div class="tech-stack">
                   <span class="tech-tag">.NET 8 Web API</span>
                   <span class="tech-tag">PostgreSQL</span>
@@ -283,7 +280,7 @@
                   <span class="tech-tag">Dapper</span>
                 </div>
                 <div class="buttons">
-                  <a href="https://github.com/Cynthia-Motaung/task-management-api" target="_blank" rel="noopener noreferrer" class="cta-button project-button">View Code</a>
+                  <a href="https://github.com/Cynthia-Motaung/TaskManager" target="_blank" rel="noopener noreferrer" class="cta-button project-button">View Code</a>
                   <a href="https://task-api-demo.azurewebsites.net/swagger" target="_blank" rel="noopener noreferrer" class="cta-button project-button secondary">API Docs</a>
                 </div>
              </div>
@@ -294,15 +291,15 @@
           <div class="project-image-container">
             <img src="https://storage.googleapis.com/media.landbot.io/1831/channels/XW5LROH0J7V47BOU4T1ZK93O3X1T7DSA.png" alt="AI Chatbot Screenshot" loading="lazy">
              <div class="project-image-overlay">
-                <h3>AI Customer Service Bot</h3>
+                <h3>CycleCloud</h3>
             </div>
           </div>
            <div class="project-content-hidden">
              <div class="details">
                 <h4>Project Overview</h4>
-                <p>An intelligent chatbot integrated into a web application to handle customer support queries. The bot can answer frequently asked questions, create support tickets, and escalate complex issues to a human agent.</p>
+                <p>CycleCloud is currently a powerful and well-structured backend API. It has all the foundational elements a secure database, a logical data model, and authentication—required to support a full-stack application.</p>
                 <h4>Technical Breakdown</h4>
-                <p>This project uses a .NET Core worker service to process messages and integrate with the Microsoft Bot Framework. The natural language understanding is powered by Azure AI Language services. The front-end widget is a simple JavaScript component that interacts with the back-end via a SignalR hub for real-time communication.</p>
+                <p>Built with ASP.NET Core 8, this project implements ASP.NET Core Identity for secure user authentication and role-based authorization. It follows a service-oriented architecture for clear separation of concerns and uses Entity Framework Core for data access to a PostgreSQL database, providing a robust foundation for bicycle rental management.</p>
                 <div class="tech-stack">
                   <span class="tech-tag">.NET Core</span>
                   <span class="tech-tag">Azure AI Services</span>
