@@ -1179,3 +1179,12 @@ h2::after {
       opacity: 1;
   }
 }
+
+/* Add this to your existing CSS */
+.resume-icon path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+}
+.resume-section.is-visible .resume-icon path {
+    animation: draw 1s ease-out forwards;
+}
