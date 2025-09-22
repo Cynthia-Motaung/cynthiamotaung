@@ -1188,3 +1188,62 @@ h2::after {
 .resume-section.is-visible .resume-icon path {
     animation: draw 1s ease-out forwards;
 }
+
+/* Add to your existing CSS */
+.project-card.coming-soon {
+  position: relative;
+  opacity: 0.8;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--accent-gradient);
+  color: var(--button-primary-text);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.coming-soon-badge::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background: #ff6b6b;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; transform: translateY(-50%) scale(1); }
+  50% { opacity: 0.5; transform: translateY(-50%) scale(1.2); }
+  100% { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+/* Disable hover effects for coming soon projects */
+.project-card.coming-soon:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.project-card.coming-soon:hover .project-image-container img {
+  transform: none !important;
+}
+
+.project-card.coming-soon .project-image-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.project-card.coming-soon .cta-button {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: not-allowed;
+}
