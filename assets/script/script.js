@@ -1,3 +1,291 @@
+// Enhanced scroll-triggered animations with throttling
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  }
+}
+
+// Improved intersection observer with better performance
+const createScrollObserver = (threshold = 0.1, rootMargin = '0px') => {
+  return new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, {
+    threshold: threshold,
+    rootMargin: rootMargin
+  });
+};
+
+// Initialize all scroll observers
+const initScrollAnimations = () => {
+  // Main sections observer
+  const sectionObserver = createScrollObserver(0.1, '0px 0px -10% 0px');
+  document.querySelectorAll('.animated-section').forEach(section => {
+    sectionObserver.observe(section);
+  });
+
+  // Resume entries with staggered animation
+  const resumeObserver = createScrollObserver(0.1, '0px 0px -20% 0px');
+  document.querySelectorAll('.resume-entry').forEach((entry, index) => {
+    resumeObserver.observe(entry);
+  });
+
+  // Project cards animation
+  const projectObserver = createScrollObserver(0.1, '0px 0px -10% 0px');
+  document.querySelectorAll('.project-card').forEach((card, index) => {
+    card.style.transitionDelay = `${index * 0.1}s`;
+    projectObserver.observe(card);
+  });
+};
+
+// Smooth scroll to anchor links
+const initSmoothScroll = () => {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const headerHeight = document.querySelector('.site-header').offsetHeight;
+        const targetPosition = targetElement.offsetTop - headerHeight - 20;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Update URL without jumping
+        history.pushState(null, null, targetId);
+      }
+    });
+  });
+};
+
+// Progress indicator
+const createScrollProgress = () => {
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  progressBar.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--accent-gradient);
+    z-index: 1000;
+    transition: width 0.1s ease;
+  `;
+  document.body.appendChild(progressBar);
+
+  const updateProgressBar = throttle(() => {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const scrollPosition = window.scrollY;
+    const progress = (scrollPosition / documentHeight) * 100;
+    progressBar.style.width = `${progress}%`;
+  }, 10);
+
+  window.addEventListener('scroll', updateProgressBar);
+};
+
+// Parallax scroll effect
+const initParallaxScroll = () => {
+  const parallaxElements = document.querySelectorAll('[data-parallax]');
+  
+  const handleParallax = throttle(() => {
+    const scrollPosition = window.scrollY;
+    
+    parallaxElements.forEach(element => {
+      const speed = element.dataset.parallaxSpeed || 0.5;
+      const yPos = -(scrollPosition * speed);
+      element.style.transform = `translateY(${yPos}px)`;
+    });
+  }, 10);
+
+  window.addEventListener('scroll', handleParallax);
+};
+
+// Update active nav link with better performance
+const updateActiveNavLink = throttle(() => {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const scrollPosition = window.scrollY + 100;
+
+  let currentSection = '';
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    
+    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      currentSection = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${currentSection}`) {
+      link.classList.add('active');
+    }
+  });
+}, 100);
+
+// Mobile menu functionality
+const initMobileMenu = () => {
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mainNav = document.getElementById('main-nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (mobileMenuToggle && mainNav) {
+    mobileMenuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('active');
+      mobileMenuToggle.setAttribute('aria-expanded', 
+        mainNav.classList.contains('active'));
+      
+      // Update icon
+      const icon = mobileMenuToggle.querySelector('i');
+      if (mainNav.classList.contains('active')) {
+        icon.className = 'bi bi-x-lg';
+      } else {
+        icon.className = 'bi bi-list';
+      }
+    });
+
+    // Close mobile menu when clicking on links
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.querySelector('i').className = 'bi bi-list';
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+        mainNav.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.querySelector('i').className = 'bi bi-list';
+      }
+    });
+  }
+};
+
+// Enhanced touch device detection and optimization
+const initTouchOptimizations = () => {
+  // Check if device supports touch
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  
+  if (isTouchDevice) {
+    document.body.classList.add('touch-device');
+    
+    // Improve project card interaction for touch
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+      card.addEventListener('touchstart', function() {
+        this.classList.add('touch-active');
+      });
+      
+      card.addEventListener('touchend', function() {
+        setTimeout(() => {
+          this.classList.remove('touch-active');
+        }, 150);
+      });
+    });
+  }
+};
+
+// Improved image loading for mobile
+const optimizeImagesForMobile = () => {
+  const images = document.querySelectorAll('img[loading="lazy"]');
+  
+  images.forEach(img => {
+    // Add error handling
+    img.addEventListener('error', function() {
+      this.style.display = 'none';
+      console.warn('Image failed to load:', this.src);
+    });
+    
+    // Optimize for mobile data saving
+    if (window.innerWidth <= 768) {
+      const src = img.getAttribute('src');
+      if (src && src.includes('unsplash.com')) {
+        // You could implement image quality reduction here
+        // For example, add quality parameters to external images
+      }
+    }
+  });
+};
+
+// Viewport height fix for mobile browsers
+const fixViewportHeight = () => {
+  const setVH = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+  
+  setVH();
+  window.addEventListener('resize', setVH);
+};
+
+// Performance optimization for mobile
+const optimizePerformance = () => {
+  // Reduce animations on low-performance devices
+  if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) {
+    document.body.classList.add('reduced-animations');
+  }
+  
+  // Implement intersection observer for images
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.getAttribute('data-src') || img.src;
+        img.classList.remove('lazy');
+        imageObserver.unobserve(img);
+      }
+    });
+  });
+
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    imageObserver.observe(img);
+  });
+};
+
+// Back to top functionality
+const initBackToTop = () => {
+  const backToTopButton = document.getElementById('back-to-top');
+  if (backToTopButton) {
+    window.addEventListener('scroll', throttle(() => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    }, 100));
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   // --- DYNAMIC COPYRIGHT YEAR ---
   const copyrightYear = document.getElementById('copyright-year');
@@ -51,7 +339,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const applyTheme = (theme) => {
     document.documentElement.classList.remove('light-mode', 'dark-mode');
-    // document.documentElement.classList.add(theme + '-mode'); // This line was potentially buggy
 
     if (theme === 'light') {
         document.documentElement.classList.add('light-mode');
@@ -216,7 +503,6 @@ document.addEventListener("DOMContentLoaded", () => {
   resumeEntries.forEach(entry => {
     resumeObserver.observe(entry);
   });
-
 
   // --- ACTIVE NAV LINK ON SCROLL ---
   const sections = document.querySelectorAll('section[id]');
@@ -423,7 +709,6 @@ document.addEventListener("DOMContentLoaded", () => {
       { name: 'Home', action: () => window.location.href = '#home' },
       { name: 'About', action: () => window.location.href = '#about' },
       { name: 'Resume', action: () => window.location.href = '#resume' },
-      { name: 'Skills', action: () => window.location.href = '#skills' },
       { name: 'Projects', action: () => window.location.href = '#projects' },
       { name: 'Toggle Theme', action: () => themeToggle.click() },
       { name: 'Contact Me', action: openContactModal },
@@ -517,178 +802,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeCmdTriggers.forEach(trigger => trigger.addEventListener('click', closeCommandPalette));
 
-});
-
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  if (loader && !loader.classList.contains('hidden')) {
-    loader.classList.add('hidden');
-  }
-});
-
-// Add this to your existing script.js - replace or enhance existing scroll-related code
-
-// Enhanced scroll-triggered animations with throttling
-function throttle(func, limit) {
-  let inThrottle;
-  return function() {
-    const args = arguments;
-    const context = this;
-    if (!inThrottle) {
-      func.apply(context, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  }
-}
-
-// Improved intersection observer with better performance
-const createScrollObserver = (threshold = 0.1, rootMargin = '0px') => {
-  return new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-      }
-    });
-  }, {
-    threshold: threshold,
-    rootMargin: rootMargin
-  });
-};
-
-// Initialize all scroll observers
-const initScrollAnimations = () => {
-  // Main sections observer
-  const sectionObserver = createScrollObserver(0.1, '0px 0px -10% 0px');
-  document.querySelectorAll('.animated-section').forEach(section => {
-    sectionObserver.observe(section);
-  });
-
-  // Resume entries with staggered animation
-  const resumeObserver = createScrollObserver(0.1, '0px 0px -20% 0px');
-  document.querySelectorAll('.resume-entry').forEach((entry, index) => {
-    resumeObserver.observe(entry);
-  });
-
-  // Project cards animation
-  const projectObserver = createScrollObserver(0.1, '0px 0px -10% 0px');
-  document.querySelectorAll('.project-card').forEach((card, index) => {
-    card.style.transitionDelay = `${index * 0.1}s`;
-    projectObserver.observe(card);
-  });
-};
-
-// Smooth scroll to anchor links
-const initSmoothScroll = () => {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        const headerHeight = document.querySelector('.site-header').offsetHeight;
-        const targetPosition = targetElement.offsetTop - headerHeight - 20;
-        
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-        
-        // Update URL without jumping
-        history.pushState(null, null, targetId);
-      }
-    });
-  });
-};
-
-// Progress indicator (optional)
-const createScrollProgress = () => {
-  const progressBar = document.createElement('div');
-  progressBar.className = 'scroll-progress';
-  progressBar.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background: var(--accent-gradient);
-    z-index: 1000;
-    transition: width 0.1s ease;
-  `;
-  document.body.appendChild(progressBar);
-
-  const updateProgressBar = throttle(() => {
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight - windowHeight;
-    const scrollPosition = window.scrollY;
-    const progress = (scrollPosition / documentHeight) * 100;
-    progressBar.style.width = `${progress}%`;
-  }, 10);
-
-  window.addEventListener('scroll', updateProgressBar);
-};
-
-// Parallax scroll effect
-const initParallaxScroll = () => {
-  const parallaxElements = document.querySelectorAll('[data-parallax]');
-  
-  const handleParallax = throttle(() => {
-    const scrollPosition = window.scrollY;
-    
-    parallaxElements.forEach(element => {
-      const speed = element.dataset.parallaxSpeed || 0.5;
-      const yPos = -(scrollPosition * speed);
-      element.style.transform = `translateY(${yPos}px)`;
-    });
-  }, 10);
-
-  window.addEventListener('scroll', handleParallax);
-};
-
-// Update active nav link with better performance
-const updateActiveNavLink = throttle(() => {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const scrollPosition = window.scrollY + 100;
-
-  let currentSection = '';
-  
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    
-    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-      currentSection = section.getAttribute('id');
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${currentSection}`) {
-      link.classList.add('active');
-    }
-  });
-}, 100);
-
-// Initialize all scroll functionalities
-document.addEventListener('DOMContentLoaded', () => {
-  // Your existing DOMContentLoaded code...
-  
   // Add these new initializations
   initScrollAnimations();
   initSmoothScroll();
   createScrollProgress();
   initParallaxScroll();
+  initMobileMenu();
+  initTouchOptimizations();
+  optimizeImagesForMobile();
+  fixViewportHeight();
+  optimizePerformance();
+  initBackToTop();
   
   // Enhanced scroll event listener
   window.addEventListener('scroll', updateActiveNavLink);
+  
+  // Enhanced resize handler
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // Re-initialize components that need resize updates
+      if (typeof particlesJS !== 'undefined') {
+        const theme = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
+        initParticles(theme);
+      }
+    }, 250);
+  });
 });
 
 // Handle page load scroll position
 window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  if (loader && !loader.classList.contains('hidden')) {
+    loader.classList.add('hidden');
+  }
+  
   // Check if URL has hash and scroll to it
   if (window.location.hash) {
     const targetElement = document.querySelector(window.location.hash);

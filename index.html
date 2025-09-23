@@ -49,18 +49,23 @@
         <svg id="logo-svg" width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path class="logo-path-c" d="M62.3,25.4C54.5,18.8,44.5,15,34,15C23.5,15,13.5,18.8,5.7,25.4" stroke-width="8" stroke-linecap="round"/>
             <path class="logo-path-m" d="M30,50 L50,75 L70,50" stroke-width="8" stroke-linecap="round"/>
-            <path class="logo-path-outer" d="M90,50 A40 40 0 1 1 10 50 A40 40 0 1 1 90 50" stroke-width="8"/>
+            <path class="logo-path-outer" d="M90,50 A40 40 0 1 1 10 50 A40 40 0 1 1 90,50" stroke-width="8"/>
         </svg>
       </a>
-      <nav class="main-nav" aria-label="Main navigation">
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+      </button>
+      
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
         <ul class="nav-list">
           <li><a href="#home" class="nav-link" data-magnetic>Home</a></li>
           <li><a href="#about" class="nav-link" data-magnetic>About</a></li>
-         <li><a href="#resume" class="nav-link" data-magnetic>Resume</a></li>
-          <!--<li><a href="#skills" class="nav-link" data-magnetic>Skills</a></li>-->
+          <li><a href="#resume" class="nav-link" data-magnetic>Resume</a></li>
           <li><a href="#projects" class="nav-link" data-magnetic>Projects</a></li>
         </ul>
       </nav>
+      
       <div class="header-controls">
         <button id="connect-button" class="cta-button secondary" data-magnetic>Connect</button>
         <button id="theme-toggle" aria-label="Toggle dark/light mode" data-magnetic>
@@ -80,7 +85,7 @@
           A Johannesburg-based .NET Developer with a passion for building secure, scalable, and high-performance web applications. I specialize in the Microsoft technology stack, including C#, ASP.NET Core, and Azure.
         </p>
         <div class="social-links-container">
-          <a href="https://www.linkedin.com/in/cynthia-motaung/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" data-magnetic>
+          <a href="https://www.linkedin.com/in/cn-motaung/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" data-magnetic>
             <i class="bi bi-linkedin" aria-hidden="true"></i>
           </a>
           <a href="https://github.com/Cynthia-Motaung" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" data-magnetic>
@@ -222,8 +227,7 @@
       </div>
       <div class="project-grid">
         
-
-       <article class="project-card coming-soon" data-category="back-end" data-tilt>
+        <article class="project-card coming-soon" data-category="back-end" data-tilt>
           <div class="coming-soon-badge">Coming Soon</div>
         <div class="project-image-container">
             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60s" alt="AI Resume Builder - Coming Soon" loading="lazy">
@@ -467,7 +471,6 @@
           </div>
         </article>
 
-
         <article class="project-card" data-category="ai" data-tilt>
           <div class="project-image-container">
             <img src="/assets/images/chatbot.png" alt="AI Chatbot Screenshot" loading="lazy">
@@ -494,7 +497,6 @@
           </div>
         </article>
         
-
         <article class="project-card" data-category="back-end" data-tilt>
           <div class="project-image-container">
             <img src="/assets/images/movieDB.png" alt="AI Chatbot Screenshot" loading="lazy">
@@ -583,7 +585,7 @@
             <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                 <input type="hidden" name="form-name" value="contact" />
                 <p class="hidden" style="display:none;">
-                    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
                 </p>
                 <div class="form-row">
                     <div class="form-group">
@@ -630,14 +632,18 @@
       </div>
   </div>
 
-  
+  <!-- Back to top button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="bi bi-chevron-up"></i>
+  </button>
+
   <footer class="site-footer">
     <div class="footer-content">
       <p>&copy; <span id="copyright-year">2025</span> Cynthia Motaung. All rights reserved.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
         <ul class="footer-links-list">
           <li><a href="https://github.com/Cynthia-Motaung" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/cynthia-motaung/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+          <li><a href="https://www.linkedin.com/in/cn-motaung/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
         </ul>
       </nav>
     </div>
@@ -646,64 +652,6 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
   <script src="/assets/script/script.js" defer></script>
-
-  <!-- Add this to your HTML file if you want a back-to-top button -->
-<button id="back-to-top" class="back-to-top" aria-label="Back to top">
-  <i class="bi bi-chevron-up"></i>
-</button>
-
-<style>
-.back-to-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background: var(--accent-gradient);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.back-to-top:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-</style>
-
-<script>
-// Back to top functionality
-const backToTopButton = document.getElementById('back-to-top');
-if (backToTopButton) {
-  window.addEventListener('scroll', throttle(() => {
-    if (window.pageYOffset > 300) {
-      backToTopButton.classList.add('visible');
-    } else {
-      backToTopButton.classList.remove('visible');
-    }
-  }, 100));
-
-  backToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-}
-</script>
 </body>
 
 </html>
