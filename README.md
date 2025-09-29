@@ -2,7 +2,7 @@
 
 This is the source code for my personal portfolio website, designed to showcase my skills, experience, and projects as a .NET Developer. It's a fully responsive, modern single-page application built with HTML, CSS, and vanilla JavaScript.
 
-**Live Demo:** [https://your-portfolio-domain.com](https://your-portfolio-domain.com)
+**Live Demo:** https://cynthiamotaung.vercel.app/
 
 ![Portfolio Screenshot](https://your-portfolio-domain.com/assets/portfolio-preview.jpg)
 *(Note: Replace the URL and screenshot above with your actual deployed portfolio)*
