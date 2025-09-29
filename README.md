@@ -89,6 +89,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-Cynthia Motaung - [@LinkedIn](https://www.linkedin.com/in/cynthia-motaung/)
+Cynthia Motaung - [@LinkedIn](www.linkedin.com/in/cn-motaung)
 
 Project Link: https://github.com/Cynthia-Motaung/cynthiamotaung/
