@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <title>Cynthia Motaung - Resume</title>
+  <meta name="description" content="Resume of Cynthia Motaung, a .NET Developer specializing in building robust web applications and APIs with C#, ASP.NET Core, and Azure.">
+
+  <!-- Use the same stylesheets as your main site -->
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* Resume-specific styles that extend your main CSS */
+    .resume-page {
+      min-height: 100vh;
+      background: var(--bg-color);
+    }
+
+    .resume-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      padding-top: 100px;
+    }
+
+    .resume-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .resume-title h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .resume-title h2 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--accent-color);
+    }
+
+    .resume-contact {
+      text-align: right;
+    }
+
+    .resume-contact p {
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .resume-contact a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .resume-contact a:hover {
+      color: var(--text-color);
+    }
+
+    .resume-controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .resume-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .resume-section {
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .resume-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .resume-section h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-color);
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .resume-section h3 i {
+      color: var(--accent-color);
+    }
+
+    .resume-item {
+      margin-bottom: 1.5rem;
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .resume-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .resume-item h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    .resume-meta {
+      font-size: 0.9rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .resume-item ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .resume-item li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .resume-item li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      top: -2px;
+      color: var(--accent-color);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .skill-category h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: var(--bg-color);
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .skill-tag:hover {
+      background: var(--accent-gradient);
+      color: var(--button-primary-text);
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+
+    .profile-section {
+      grid-column: 1 / -1;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+
+    .profile-section h3 {
+      margin-top: 0;
+    }
+
+    .profile-section p {
+      color: var(--secondary-color);
+      line-height: 1.7;
+    }
+
+    .back-to-portfolio {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      transition: color 0.3s ease;
+    }
+
+    .back-to-portfolio:hover {
+      color: var(--text-color);
+    }
+
+    @media (max-width: 768px) {
+      .resume-container {
+        padding: 1rem;
+        padding-top: 80px;
+      }
+
+      .resume-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .resume-contact {
+        text-align: left;
+      }
+
+      .resume-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resume-controls {
+        justify-content: center;
+      }
+
+      .resume-title h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media print {
+      .resume-controls,
+      .back-to-portfolio {
+        display: none;
+      }
+
+      .resume-container {
+        padding: 0;
+        padding-top: 0;
+      }
+
+      .resume-item {
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+
+      .resume-item:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="resume-page">
+  <!-- Use the same header as your main site -->
+  <header class="site-header">
+    <div class="header-inner-wrapper">
+      <a href="index.html" class="logo-link" aria-label="Cynthia Motaung's Home" data-magnetic>
+        <img src="/assets/images/Logo.png" alt="Cynthia Motaung's Logo" width="60" height="60">
+      </a>
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+      </button>
+      
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html#home" class="nav-link" data-magnetic>Home</a></li>
+          <li><a href="index.html#about" class="nav-link" data-magnetic>About</a></li>
+          <li><a href="index.html#resume" class="nav-link" data-magnetic>Resume</a></li>
+          <li><a href="index.html#projects" class="nav-link" data-magnetic>Projects</a></li>
+          <li><a href="resume.html" class="nav-link active" data-magnetic>Full Resume</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-controls">
+        <button id="connect-button" class="cta-button secondary" data-magnetic>Connect</button>
+        <button id="theme-toggle" aria-label="Toggle dark/light mode" data-magnetic>
+          <i class="bi bi-moon-fill" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="resume-container">
+    <a href="index.html" class="back-to-portfolio">
+      <i class="bi bi-arrow-left"></i> Back to Portfolio
+    </a>
+
+    <div class="resume-controls">
+      <button id="print-btn" class="cta-button primary">
+        <i class="bi bi-printer"></i> Print Resume
+      </button>
+      <a href="full-stack-resume.pdf" class="cta-button secondary" download="Cynthia-Motaung-Resume.pdf">
+        <i class="bi bi-download"></i> Download PDF
+      </a>
+    </div>
+
+    <div class="resume-header">
+      <div class="resume-title">
+        <h1>Cynthia Motaung</h1>
+        <h2>.NET Developer</h2>
+      </div>
+      <div class="resume-contact">
+        <p><i class="bi bi-telephone"></i> 065 892 3046</p>
+        <p><i class="bi bi-envelope"></i> <a href="mailto:cynthiamotaung015@gmail.com">cynthiamotaung015@gmail.com</a></p>
+        <p><i class="bi bi-geo-alt"></i> Johannesburg, GP</p>
+        <p><i class="bi bi-globe"></i> <a href="https://cynthiamotaung.vercel.app/" target="_blank">cynthiamotaung.vercel.app</a></p>
+      </div>
+    </div>
+
+    <div class="profile-section resume-section">
+      <h3><i class="bi bi-person-badge"></i> Profile</h3>
+      <p>Junior Software Developer with hands-on experience in full-stack web applications and applied AI projects. Skilled in C#, .NET, React, Python, and API integration. Building scalable, maintainable applications while exploring AI-driven features for web development. Quick learner with strong problem-solving skills and attention to detail.</p>
+    </div>
+
+    <div class="resume-content">
+      <div class="resume-column">
+        <div class="resume-section">
+          <h3><i class="bi bi-briefcase"></i> Work Experience</h3>
+          <div class="resume-item">
+            <h4>Software Development Intern</h4>
+            <p class="resume-meta">CAPACITI | April 2025 - Present</p>
+            <ul>
+              <li>Participating in a hands-on AI Bootcamp, focusing on machine learning, deep learning, and AI integration in web applications</li>
+              <li>Exploring Generative AI, Reinforcement Learning, and Ethical AI practices</li>
+              <li>Building scalable, maintainable applications and applying software engineering best practices</li>
+              <li>Collaborating with teams of developers to design, build, and deploy projects</li>
+              <li>Gaining practical experience with Azure DevOps and CI/CD automation using GitHub Copilot</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <h3><i class="bi bi-mortarboard"></i> Education</h3>
+          <div class="resume-item">
+            <h4>Diploma in Information Technology</h4>
+            <p class="resume-meta">Nelson Mandela University | 2020 - 2024</p>
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <h3><i class="bi bi-award"></i> Certifications</h3>
+          <div class="resume-item">
+            <ul>
+              <li>Foundational C#</li>
+              <li>Responsive Web Design</li>
+              <li>Relational Database</li>
+              <li>JavaScript Algorithms and Data Structures</li>
+              <li>Frontend Libraries Development</li>
+              <li>Back End Development & APIs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-column">
+        <div class="resume-section">
+          <h3><i class="bi bi-gear"></i> Technical Skills</h3>
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h4>Frontend</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Bootstrap</span>
+                <span class="skill-tag">Razor Pages</span>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h4>Backend & Databases</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">C#</span>
+                <span class="skill-tag">.NET Core</span>
+                <span class="skill-tag">EF Core</span>
+                <span class="skill-tag">MSSQL</span>
+                <span class="skill-tag">PostgreSQL</span>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h4>Cloud & DevOps</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Azure DevOps</span>
+                <span class="skill-tag">GitHub Copilot</span>
+                <span class="skill-tag">CI/CD automation</span>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h4>Tools</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">VSCode</span>
+                <span class="skill-tag">Trello</span>
+                <span class="skill-tag">Figma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <h3><i class="bi bi-star"></i> Strengths</h3>
+          <div class="resume-item">
+            <ul>
+              <li>Collaboration & Teamwork</li>
+              <li>Adaptability & Learning</li>
+              <li>Attention to Detail</li>
+              <li>Project Management</li>
+              <li>Problem Solving</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <h3><i class="bi bi-people"></i> References</h3>
+          <div class="resume-item">
+            <h4>Oarabile Mogase</h4>
+            <p class="resume-meta">Talent Development Coach</p>
+            <p>067 642 2151</p>
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <h3><i class="bi bi-translate"></i> Languages</h3>
+          <div class="resume-item">
+            <p>English: Proficient</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Use the same footer as your main site -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; <span id="copyright-year">2025</span> Cynthia Motaung. All rights reserved.</p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul class="footer-links-list">
+          <li><a href="https://github.com/Cynthia-Motaung" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/cn-motaung/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+          <li><a href="resume.html" class="footer-link">Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Use the same theme system as your main site
+    const themeToggle = document.getElementById('theme-toggle');
+    const storedTheme = localStorage.getItem('theme') || 'dark';
+
+    const applyTheme = (theme) => {
+      document.documentElement.classList.remove('light-mode', 'dark-mode');
+      if (theme === 'light') {
+        document.documentElement.classList.add('light-mode');
+        themeToggle.innerHTML = '<i class="bi bi-moon-fill" aria-hidden="true"></i>';
+      } else {
+        document.documentElement.classList.remove('light-mode');
+        themeToggle.innerHTML = '<i class="bi bi-sun-fill" aria-hidden="true"></i>';
+      }
+    };
+
+    applyTheme(storedTheme);
+
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.toggle('light-mode');
+        const newTheme = isLight ? 'light' : 'dark';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+      });
+    }
+
+    // Print functionality
+    const printBtn = document.getElementById('print-btn');
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+
+    // Scroll animations
+    const resumeSections = document.querySelectorAll('.resume-section');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    resumeSections.forEach(section => {
+      sectionObserver.observe(section);
+    });
+
+    // Update copyright year
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    // Mobile menu functionality (same as main site)
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    if (mobileMenuToggle && mainNav) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+        mobileMenuToggle.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+        
+        const icon = mobileMenuToggle.querySelector('i');
+        if (mainNav.classList.contains('active')) {
+          icon.className = 'bi bi-x-lg';
+        } else {
+          icon.className = 'bi bi-list';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
