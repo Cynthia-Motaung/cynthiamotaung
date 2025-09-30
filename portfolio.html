@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <title>Cynthia Motaung - Portfolio</title>
+  <meta name="description" content="Portfolio of Cynthia Motaung, a .NET Developer specializing in building robust web applications and APIs with C#, ASP.NET Core, and Azure.">
+
+  <!-- Use the same stylesheets as your main site -->
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet" />
+  
+  <style>
+    .portfolio-page {
+  min-height: 100vh;
+  background: var(--bg-color);
+  overflow-x: hidden;
+  opacity: 1 !important; /* Fix blank space */
+}
+
+/* Ensure all elements start visible */
+.stat-card,
+.featured-project,
+.portfolio-project-card,
+.cta-section,
+.portfolio-section {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Only apply hidden state after page load for animation */
+body.animations-ready .stat-card,
+body.animations-ready .featured-project,
+body.animations-ready .portfolio-project-card,
+body.animations-ready .cta-section {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+}
+
+/* Rest of your existing CSS remains the same */
+.portfolio-hero {
+  padding: 140px 0 100px 0;
+  text-align: center;
+  background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+    .portfolio-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(0, 170, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .portfolio-hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: inline-block;
+    }
+
+    .portfolio-hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--accent-gradient);
+      border-radius: 2px;
+    }
+
+    .portfolio-hero p {
+      font-size: 1.3rem;
+      color: var(--secondary-color);
+      max-width: 700px;
+      margin: 0 auto 3rem auto;
+      line-height: 1.8;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .hero-stat-label {
+      color: var(--secondary-color);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .portfolio-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .back-to-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 3rem;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--border-color);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      background: var(--card-bg);
+    }
+
+    .back-to-home:hover {
+      color: var(--text-color);
+      border-color: var(--accent-color);
+      transform: translateX(-5px);
+    }
+
+    /* Enhanced Stats Grid */
+    .portfolio-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .stat-card:hover::before {
+      left: 100%;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      border-color: var(--accent-color);
+    }
+
+    .stat-icon {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .stat-label {
+      color: var(--secondary-color);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Enhanced Featured Project */
+    .featured-project {
+      background: var(--card-bg);
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 6rem;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .featured-project::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gradient);
+      z-index: 2;
+    }
+
+    .featured-project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    }
+
+    .featured-project-content {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 0;
+    }
+
+    .featured-project-image {
+      height: 500px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .featured-project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .featured-project:hover .featured-project-image img {
+      transform: scale(1.08);
+    }
+
+    .featured-project-info {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .featured-badge {
+      display: inline-block;
+      background: var(--accent-gradient);
+      color: var(--button-primary-text);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0, 170, 255, 0.3);
+    }
+
+    .featured-project-info h3 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+      line-height: 1.2;
+    }
+
+    .featured-project-info p {
+      color: var(--secondary-color);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .featured-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .featured-tech-tag {
+      background: var(--bg-color);
+      color: var(--text-color);
+      padding: 0.75rem 1.25rem;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .featured-tech-tag:hover {
+      background: var(--accent-gradient);
+      color: var(--button-primary-text);
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+
+    /* Enhanced Project Grid */
+    .project-grid-section {
+      margin-bottom: 6rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 5px;
+      background: var(--accent-gradient);
+      border-radius: 3px;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .category-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 2px solid var(--border-color);
+      color: var(--secondary-color);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--accent-gradient);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    .filter-btn:hover {
+      color: var(--button-primary-text);
+      border-color: var(--accent-color);
+    }
+
+    .filter-btn:hover::before {
+      left: 0;
+    }
+
+    .filter-btn.active {
+      background: var(--accent-gradient);
+      color: var(--button-primary-text);
+      border-color: transparent;
+      box-shadow: 0 5px 15px rgba(0, 170, 255, 0.3);
+    }
+
+    .portfolio-project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .portfolio-project-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .portfolio-project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gradient);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .portfolio-project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+
+    .portfolio-project-image {
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .portfolio-project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .portfolio-project-card:hover .portfolio-project-image img {
+      transform: scale(1.1);
+    }
+
+    .project-category-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent-gradient);
+      color: var(--button-primary-text);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      z-index: 2;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .portfolio-project-content {
+      padding: 2rem;
+    }
+
+    .portfolio-project-content h4 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+      line-height: 1.3;
+    }
+
+    .portfolio-project-content p {
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .portfolio-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .portfolio-tech-tag {
+      background: var(--bg-color);
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .portfolio-tech-tag:hover {
+      background: var(--accent-color);
+      color: var(--button-primary-text);
+      transform: translateY(-2px);
+    }
+
+    .portfolio-project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .portfolio-project-links .cta-button {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Call to Action Section */
+    .cta-section {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 5rem 3rem;
+      text-align: center;
+      margin: 6rem 0;
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 170, 255, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .portfolio-hero h1 {
+        font-size: 3rem;
+      }
+
+      .featured-project-content {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-project-image {
+        height: 350px;
+      }
+
+      .portfolio-project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-hero {
+        padding: 120px 0 80px 0;
+      }
+
+      .portfolio-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .portfolio-hero p {
+        font-size: 1.1rem;
+      }
+
+      .portfolio-container {
+        padding: 1rem;
+      }
+
+      .hero-stats {
+        gap: 2rem;
+      }
+
+      .hero-stat-number {
+        font-size: 2.5rem;
+      }
+
+      .featured-project-info {
+        padding: 2rem;
+      }
+
+      .featured-project-info h3 {
+        font-size: 1.8rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+
+      .portfolio-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-card {
+        padding: 2rem;
+      }
+
+      .cta-section {
+        padding: 3rem 2rem;
+      }
+
+      .cta-section h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .portfolio-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-filters {
+        gap: 0.5rem;
+      }
+
+      .filter-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .hero-stats {
+        gap: 1.5rem;
+      }
+
+      .hero-stat-number {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="portfolio-page">
+  <!-- Use the same header as your main site -->
+  <header class="site-header">
+    <div class="header-inner-wrapper">
+      <a href="index.html" class="logo-link" aria-label="Cynthia Motaung's Home" data-magnetic>
+        <img src="/assets/images/Logo.png" alt="Cynthia Motaung's Logo" width="60" height="60">
+      </a>
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+      </button>
+      
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html#home" class="nav-link" data-magnetic>Home</a></li>
+          <li><a href="index.html#about" class="nav-link" data-magnetic>About</a></li>
+          <li><a href="index.html#resume" class="nav-link" data-magnetic>Resume</a></li>
+          <li><a href="portfolio.html" class="nav-link active" data-magnetic>Portfolio</a></li>
+          <li><a href="resume.html" class="nav-link" data-magnetic>Full Resume</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-controls">
+        <button id="connect-button" class="cta-button secondary" data-magnetic>Connect</button>
+        <button id="theme-toggle" aria-label="Toggle dark/light mode" data-magnetic>
+          <i class="bi bi-moon-fill" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="portfolio-hero">
+    <div class="portfolio-container">
+      <h1>My Portfolio</h1>
+      <p>A curated collection of innovative projects showcasing my expertise in full-stack development, AI integration, and cutting-edge web technologies.</p>
+      <div class="button-group">
+        <a href="#projects" class="cta-button primary">Explore Projects</a>
+        <a href="resume.html" class="cta-button secondary">View Resume</a>
+      </div>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-number">12+</span>
+          <span class="hero-stat-label">Projects</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">8</span>
+          <span class="hero-stat-label">Technologies</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">3+</span>
+          <span class="hero-stat-label">Years Experience</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">100%</span>
+          <span class="hero-stat-label">Success Rate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="portfolio-container">
+    <a href="index.html" class="back-to-home">
+      <i class="bi bi-arrow-left"></i> Back to Home
+    </a>
+
+    <!-- Enhanced Stats -->
+    <div class="portfolio-stats">
+      <div class="stat-card">
+        <i class="bi bi-code-slash stat-icon"></i>
+        <span class="stat-number">15K+</span>
+        <span class="stat-label">Lines of Code</span>
+      </div>
+      <div class="stat-card">
+        <i class="bi bi-git stat-icon"></i>
+        <span class="stat-number">200+</span>
+        <span class="stat-label">Git Commits</span>
+      </div>
+      <div class="stat-card">
+        <i class="bi bi-lightning-charge stat-icon"></i>
+        <span class="stat-number">98%</span>
+        <span class="stat-label">Performance Score</span>
+      </div>
+      <div class="stat-card">
+        <i class="bi bi-clock-history stat-icon"></i>
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Development Hours</span>
+      </div>
+    </div>
+
+    <!-- Featured Project -->
+    <div class="featured-project" id="featured-project">
+      <div class="featured-project-content">
+        <div class="featured-project-image">
+          <img src="/assets/images/declutter.PNG" alt="Declutter - Personal Journal Application" loading="lazy">
+        </div>
+        <div class="featured-project-info">
+          <span class="featured-badge">🚀 Featured Project</span>
+          <h3>Declutter - Modern Journal Platform</h3>
+          <p>A sophisticated web-based personal journal application built with ASP.NET Core MVC. Provides users with a secure, private digital space to capture thoughts, organize reflections, and preserve memories with enterprise-grade security and a beautiful, responsive interface.</p>
+          <div class="featured-tech-stack">
+            <span class="featured-tech-tag">ASP.NET Core MVC</span>
+            <span class="featured-tech-tag">ASP.NET Identity</span>
+            <span class="featured-tech-tag">Entity Framework</span>
+            <span class="featured-tech-tag">SQL Server</span>
+            <span class="featured-tech-tag">jQuery</span>
+            <span class="featured-tech-tag">Bootstrap 5</span>
+          </div>
+          <div class="button-group">
+            <a href="https://github.com/Cynthia-Motaung/declutter" target="_blank" class="cta-button primary">
+              <i class="bi bi-github"></i> View Code
+            </a>
+            <a href="https://ecommerce-portal-demo.azurewebsites.net/" target="_blank" class="cta-button secondary">
+              <i class="bi bi-play-circle"></i> Live Demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Projects Grid -->
+    <div class="project-grid-section" id="projects">
+      <div class="section-header">
+        <h2 class="section-title">Project Gallery</h2>
+        <p class="section-subtitle">Explore my diverse portfolio of full-stack applications, AI solutions, and innovative web projects</p>
+      </div>
+      
+      <div class="category-filters">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="full-stack">Full Stack</button>
+        <button class="filter-btn" data-filter="back-end">Back End</button>
+        <button class="filter-btn" data-filter="front-end">Front End</button>
+        <button class="filter-btn" data-filter="ai">AI & ML</button>
+      </div>
+
+      <div class="portfolio-project-grid">
+        <!-- Full Stack Projects -->
+        <article class="portfolio-project-card" data-category="full-stack">
+          <div class="portfolio-project-image">
+            <img src="/assets/images/bms.PNG" alt="Bank Management System" loading="lazy">
+            <span class="project-category-badge">Full Stack</span>
+          </div>
+          <div class="portfolio-project-content">
+            <h4>Bank Management System</h4>
+            <p>Enterprise-grade banking application with secure user authentication, transaction processing, and real-time account management features.</p>
+            <div class="portfolio-tech-stack">
+              <span class="portfolio-tech-tag">JavaScript</span>
+              <span class="portfolio-tech-tag">Java Spring Boot</span>
+              <span class="portfolio-tech-tag">REST API</span>
+              <span class="portfolio-tech-tag">PostgreSQL</span>
+            </div>
+            <div class="portfolio-project-links">
+              <a href="https://github.com/Py-sharp/Bank-Account-System" target="_blank" class="cta-button project-button">
+                <i class="bi bi-code-slash"></i> Code
+              </a>
+              <a href="https://bank-account-system.onrender.com/" target="_blank" class="cta-button project-button secondary">
+                <i class="bi bi-play-circle"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- AI Projects -->
+        <article class="portfolio-project-card" data-category="ai">
+          <div class="portfolio-project-image">
+            <img src="/assets/images/resumeBuilder.png" alt="Resume AI Studio" loading="lazy">
+            <span class="project-category-badge">AI Powered</span>
+          </div>
+          <div class="portfolio-project-content">
+            <h4>Resume AI Studio</h4>
+            <p>Intelligent resume builder leveraging Google Gemini AI for ATS-optimized content generation and professional formatting.</p>
+            <div class="portfolio-tech-stack">
+              <span class="portfolio-tech-tag">Google Gemini AI</span>
+              <span class="portfolio-tech-tag">JavaScript</span>
+              <span class="portfolio-tech-tag">TailwindCSS</span>
+              <span class="portfolio-tech-tag">HTML5</span>
+            </div>
+            <div class="portfolio-project-links">
+              <a href="https://github.com/Keamo0713/ResumeBuilder" target="_blank" class="cta-button project-button">
+                <i class="bi bi-code-slash"></i> Code
+              </a>
+              <a href="https://keamo0713.github.io/ResumeBuilder/" target="_blank" class="cta-button project-button secondary">
+                <i class="bi bi-play-circle"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Back End Projects -->
+        <article class="portfolio-project-card" data-category="back-end">
+          <div class="portfolio-project-image">
+            <img src="/assets/images/Challenges.PNG" alt="Challenges - Bucket List Tracker" loading="lazy">
+            <span class="project-category-badge">Back End</span>
+          </div>
+          <div class="portfolio-project-content">
+            <h4>Challenges Tracker</h4>
+            <p>Robust .NET application for goal management with Entity Framework Core integration and advanced progress tracking.</p>
+            <div class="portfolio-tech-stack">
+              <span class="portfolio-tech-tag">ASP.NET Core</span>
+              <span class="portfolio-tech-tag">SQL Server</span>
+              <span class="portfolio-tech-tag">Entity Framework</span>
+              <span class="portfolio-tech-tag">C#</span>
+            </div>
+            <div class="portfolio-project-links">
+              <a href="https://github.com/Cynthia-Motaung/Challenges" target="_blank" class="cta-button project-button">
+                <i class="bi bi-code-slash"></i> Code
+              </a>
+              <a href="#" class="cta-button project-button secondary">
+                <i class="bi bi-play-circle"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Front End Projects -->
+        <article class="portfolio-project-card" data-category="front-end">
+          <div class="portfolio-project-image">
+            <img src="/assets/images/salus.PNG" alt="Salus Software Website" loading="lazy">
+            <span class="project-category-badge">Front End</span>
+          </div>
+          <div class="portfolio-project-content">
+            <h4>Salus Software</h4>
+            <p>Modern corporate website with dynamic UI components, responsive design, and optimized performance.</p>
+            <div class="portfolio-tech-stack">
+              <span class="portfolio-tech-tag">HTML5</span>
+              <span class="portfolio-tech-tag">CSS3</span>
+              <span class="portfolio-tech-tag">JavaScript</span>
+              <span class="portfolio-tech-tag">Responsive</span>
+            </div>
+            <div class="portfolio-project-links">
+              <a href="https://github.com/Cynthia-Motaung/salus" target="_blank" class="cta-button project-button">
+                <i class="bi bi-code-slash"></i> Code
+              </a>
+              <a href="https://salus-software.vercel.app/" target="_blank" class="cta-button project-button secondary">
+                <i class="bi bi-play-circle"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- More Projects... -->
+        <article class="portfolio-project-card" data-category="front-end">
+          <div class="portfolio-project-image">
+            <img src="/assets/images/cmotaung.PNG" alt="Interactive Portfolio" loading="lazy">
+            <span class="project-category-badge">Front End</span>
+          </div>
+          <div class="portfolio-project-content">
+            <h4>Interactive Portfolio</h4>
+            <p>Advanced portfolio with 3D animations, smooth interactions, and immersive user experience design.</p>
+            <div class="portfolio-tech-stack">
+              <span class="portfolio-tech-tag">Three.js</span>
+              <span class="portfolio-tech-tag">JavaScript</span>
+              <span class="portfolio-tech-tag">CSS3</span>
+              <span class="portfolio-tech-tag">HTML5</span>
+            </div>
+            <div class="portfolio-project-links">
+              <a href="https://github.com/Cynthia-Motaung/cmotaung" target="_blank" class="cta-button project-button">
+                <i class="bi bi-code-slash"></i> Code
+              </a>
+              <a href="https://cmotaung.vercel.app/" target="_blank" class="cta-button project-button secondary">
+                <i class="bi bi-play-circle"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-project-card" data-category="ai">
+          <div class="portfolio-project-image">
+            <img src="/assets/images/chatbot.png" alt="AI Tutor Chatbot" loading="lazy">
+            <span class="project-category-badge">AI & ML</span>
+          </div>
+          <div class="portfolio-project-content">
+            <h4>AI Tutor Chatbot</h4>
+            <p>Intelligent conversational AI assistant for personalized learning experiences and educational support.</p>
+            <div class="portfolio-tech-stack">
+              <span class="portfolio-tech-tag">Landbot</span>
+              <span class="portfolio-tech-tag">AI Integration</span>
+              <span class="portfolio-tech-tag">UX Design</span>
+              <span class="portfolio-tech-tag">No-Code</span>
+            </div>
+            <div class="portfolio-project-links">
+              <a href="https://github.com/Cynthia-Motaung/AI-Tutor.git" target="_blank" class="cta-button project-button">
+                <i class="bi bi-code-slash"></i> Code
+              </a>
+              <a href="https://landbot.online/v3/H-2937329-8U4Q4WXGDYSB4MT6/index.html" target="_blank" class="cta-button project-button secondary">
+                <i class="bi bi-play-circle"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <!--<div class="cta-section">
+      <h2>Ready to Build Something Amazing?</h2>
+      <p>Let's collaborate on your next project. I'm passionate about creating innovative solutions that drive results and exceed expectations.</p>
+      <div class="button-group">
+        <button id="cta-connect" class="cta-button primary">Start a Project</button>
+        <a href="resume.html" class="cta-button secondary">View My Resume</a>
+      </div>
+    </div>
+  </div>-->
+
+  <!-- Use the same footer as your main site -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; <span id="copyright-year">2025</span> Cynthia Motaung. All rights reserved.</p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul class="footer-links-list">
+          <li><a href="https://github.com/Cynthia-Motaung" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/cn-motaung/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+          <li><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+          <li><a href="resume.html" class="footer-link">Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Enhanced theme system
+    const themeToggle = document.getElementById('theme-toggle');
+    const storedTheme = localStorage.getItem('theme') || 'dark';
+
+    const applyTheme = (theme) => {
+      document.documentElement.classList.remove('light-mode', 'dark-mode');
+      if (theme === 'light') {
+        document.documentElement.classList.add('light-mode');
+        themeToggle.innerHTML = '<i class="bi bi-moon-fill" aria-hidden="true"></i>';
+      } else {
+        document.documentElement.classList.remove('light-mode');
+        themeToggle.innerHTML = '<i class="bi bi-sun-fill" aria-hidden="true"></i>';
+      }
+    };
+
+    applyTheme(storedTheme);
+
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.toggle('light-mode');
+        const newTheme = isLight ? 'light' : 'dark';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+      });
+    }
+
+    // Enhanced project filtering with animations
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.portfolio-project-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.style.transform = 'scale(1)';
+        });
+        
+        // Add active class to clicked button with animation
+        button.classList.add('active');
+        button.style.transform = 'scale(1.05)';
+        
+        const filterValue = button.getAttribute('data-filter');
+        
+        // Animate cards
+        projectCards.forEach((card, index) => {
+          setTimeout(() => {
+            if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+              card.style.display = 'block';
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 50);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 300);
+            }
+          }, index * 50);
+        });
+      });
+    });
+
+    // Enhanced scroll animations with staggered delays
+    const animatedElements = document.querySelectorAll('.stat-card, .featured-project, .portfolio-project-card, .cta-section');
+    const elementObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+          }, entry.target.dataset.delay || 0);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    animatedElements.forEach((element, index) => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(30px) scale(0.95)';
+      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      element.dataset.delay = index * 100;
+      elementObserver.observe(element);
+    });
+
+    // Update copyright year
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    // Mobile menu functionality
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    if (mobileMenuToggle && mainNav) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+        mobileMenuToggle.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+        
+        const icon = mobileMenuToggle.querySelector('i');
+        if (mainNav.classList.contains('active')) {
+          icon.className = 'bi bi-x-lg';
+        } else {
+          icon.className = 'bi bi-list';
+        }
+      });
+    }
+
+    // CTA button functionality
+    const ctaConnect = document.getElementById('cta-connect');
+    if (ctaConnect) {
+      ctaConnect.addEventListener('click', () => {
+        // Open contact modal or scroll to contact section
+        const connectButton = document.getElementById('connect-button');
+        if (connectButton) {
+          connectButton.click();
+        }
+      });
+    }
+
+    // Add hover effects to stat cards
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+
+    // Add loading animation for images
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    images.forEach(img => {
+      img.addEventListener('load', function() {
+        this.style.opacity = '1';
+      });
+      img.style.opacity = '0';
+      img.style.transition = 'opacity 0.3s ease';
+    });
+  </script>
+</body>
+</html>
