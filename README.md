@@ -13,7 +13,7 @@ This is the source code for my personal portfolio website, designed to showcase 
 - **.NET Focused Content**: Sections are tailored to highlight skills and projects relevant to a .NET Developer, including ASP.NET Core, Azure, C#, and more.
 - **CLI Animation**: A "Currently Learning" section with a fun, command-line interface animation.
 - **Command Palette**: A `Ctrl/Cmd + K` command palette for quick navigation and actions.
-- **Contact Form**: A functional contact form (integrated with Netlify Forms by default).
+- **Contact Form**: A functional contact form.
 - **SEO Optimized**: Includes Open Graph and Twitter Card meta tags for better social sharing.
 
 ---
@@ -76,14 +76,14 @@ To make this portfolio your own, you'll need to update the content in `index.htm
     - **Favicon**: Replace `assets/logo.png` with your own favicon.
 
 3.  **Contact Form:**
-    - The form is set up to work with Netlify Forms out of the box. If you deploy to Netlify, it should work automatically.
+    - The form is set up to work with Formspree out of the box. If you have an account.
     - If you use a different hosting provider, you will need to change the form's `action` attribute and potentially update the JavaScript submission logic in `script.js`.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+No License 
 
 ---
 
