@@ -25,7 +25,7 @@ This is the source code for my personal portfolio website, designed to showcase 
 - **Vanilla JavaScript**: For all interactivity, animations, and DOM manipulation. No frameworks were used to keep it lightweight.
 - **Particles.js**: Used for the animated background in the hero section.
 - **Vanilla-Tilt.js**: Used for the 3D tilt effect on the project cards.
-- **Netlify**: For hosting and handling form submissions.
+- **Formspree**: For hosting and handling form submissions.
 
 ---
 
