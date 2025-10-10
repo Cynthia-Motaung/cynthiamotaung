@@ -41,7 +41,7 @@ You only need a modern web browser and a code editor (like VS Code).
 
 1.  **Clone the repository:**
     ```sh
-    git clone [https://github.com/Cynthia-Motaung/portfolio.git](https://github.com/Cynthia-Motaung/portfolio.git)
+    git clone https://github.com/Cynthia-Motaung/portfolio.git
     ```
 2.  **Navigate to the project directory:**
     ```sh
