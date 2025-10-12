@@ -1,6 +1,6 @@
 # .NET Developer Portfolio Website
 
-This is the source code for my personal portfolio website, designed to showcase my skills, experience, and projects as a .NET Developer. It's a fully responsive, modern single-page application built with HTML, CSS, and vanilla JavaScript.
+This is the source code for my personal portfolio website, designed to showcase my skills, experience, and projects as a .NET Developer. It's a fully responsive, modern web application built with HTML, CSS, and vanilla JavaScript.
 
 **Live Demo:** https://cynthiamotaung.vercel.app/
 ---
