@@ -29,8 +29,8 @@ TABLE OF CONTENTS
   --header-bg: rgba(18, 18, 18, 0.8);
   --text-color: #e0e0e0;
   --secondary-color: #a0a0a0;
-  --accent-gradient: linear-gradient(45deg, #00aaff, #0078d7);
-  --accent-color: #00aaff;
+  --accent-gradient: linear-gradient(45deg, #fdfdff, #f6fff8);
+  --accent-color: #fdfdff;
   --border-color: #333333;
   --button-primary-text: #000000;
   --success-color: #4CAF50;
@@ -44,8 +44,8 @@ TABLE OF CONTENTS
   --header-bg: rgba(249, 249, 249, 0.8);
   --text-color: #333333;
   --secondary-color: #666666;
-  --accent-gradient: linear-gradient(45deg, #0078d7, #005a9e);
-  --accent-color: #0078d7;
+  --accent-gradient: linear-gradient(45deg, #fdfdff, #f6fff8);
+  --accent-color: #fdfdff;
   --border-color: #e0e0e0;
   --button-primary-text: #ffffff;
 }
