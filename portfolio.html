@@ -10,7 +10,6 @@
 
   <!-- Use the same stylesheets as your main site -->
   <link rel="stylesheet" href="/assets/css/styles.css" />
-  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -95,33 +94,291 @@ body.animations-ready .cta-section {
       line-height: 1.8;
     }
 
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      margin-top: 3rem;
-      flex-wrap: wrap;
-    }
+    /* GitHub Contributions Graph Styles */
+    /* GitHub Contributions Graph Styles */
+.github-graph-section {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
 
-    .hero-stat {
-      text-align: center;
-    }
+.github-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
 
-    .hero-stat-number {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--accent-color);
-      margin-bottom: 0.5rem;
-      display: block;
-    }
+.github-header i {
+  font-size: 2rem;
+  color: var(--accent-color);
+}
 
-    .hero-stat-label {
-      color: var(--secondary-color);
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+.github-header h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.github-username {
+  color: var(--secondary-color);
+  font-weight: 600;
+  background: var(--bg-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.github-graph-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.github-graph {
+  display: grid;
+  grid-template-columns: repeat(52, 1fr);
+  gap: 4px;
+  padding: 1.5rem;
+  background: var(--bg-color);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  max-width: 100%;
+  overflow-x: auto;
+  min-height: 120px;
+}
+
+.contribution-day {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: #ebedf0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.contribution-day:hover {
+  transform: scale(1.3);
+  z-index: 2;
+  border: 1px solid var(--accent-color);
+}
+
+/* Contribution level colors - GitHub style */
+.contribution-day[data-level="0"] { background: #ebedf0; }
+.contribution-day[data-level="1"] { background: #9be9a8; }
+.contribution-day[data-level="2"] { background: #40c463; }
+.contribution-day[data-level="3"] { background: #30a14e; }
+.contribution-day[data-level="4"] { background: #216e39; }
+
+/* Light mode colors */
+.light-mode .contribution-day[data-level="0"] { background: #ebedf0; }
+.light-mode .contribution-day[data-level="1"] { background: #9be9a8; }
+.light-mode .contribution-day[data-level="2"] { background: #40c463; }
+.light-mode .contribution-day[data-level="3"] { background: #30a14e; }
+.light-mode .contribution-day[data-level="4"] { background: #216e39; }
+
+.github-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.github-stat {
+  text-align: center;
+}
+
+.github-stat .stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  display: block;
+}
+
+.github-stat .stat-label {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.github-link:hover {
+  color: var(--text-color);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* Contribution tooltip */
+.contribution-tooltip {
+  position: absolute;
+  background: var(--card-bg);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 1000;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contribution-tooltip.show {
+  opacity: 1;
+}
+
+/* Graph legend */
+.github-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+}
+
+.legend-label {
+  margin-right: 0.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Responsive Design for GitHub Graph */
+@media (max-width: 1024px) {
+  .github-graph {
+    grid-template-columns: repeat(26, 1fr);
+    gap: 3px;
+  }
+  
+  .contribution-day {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .github-graph-section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .github-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .github-graph {
+    grid-template-columns: repeat(13, 1fr);
+    gap: 2px;
+    padding: 1rem;
+  }
+  
+  .contribution-day {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .github-stats {
+    gap: 2rem;
+  }
+  
+  .github-stat .stat-number {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .github-graph {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .github-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Responsive Design for GitHub Graph */
+/**@media (max-width: 1024px) {
+  .github-graph {
+    grid-template-columns: repeat(26, 1fr);
+    gap: 3px;
+  }
+  
+  .contribution-day {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .github-graph-section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .github-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .github-graph {
+    grid-template-columns: repeat(13, 1fr);
+    gap: 2px;
+    padding: 1rem;
+  }
+  
+  .contribution-day {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .github-stats {
+    gap: 2rem;
+  }
+  
+  .github-stat .stat-number {
+    font-size: 1.5rem;
+  }
+}**/
+
+@media (max-width: 480px) {
+  .github-graph {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .github-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
 
     .portfolio-container {
       max-width: 1400px;
@@ -609,12 +866,12 @@ body.animations-ready .cta-section {
         padding: 1rem;
       }
 
-      .hero-stats {
-        gap: 2rem;
+      .portfolio-stats {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .hero-stat-number {
-        font-size: 2.5rem;
+      .stat-card {
+        padding: 2rem;
       }
 
       .featured-project-info {
@@ -627,14 +884,6 @@ body.animations-ready .cta-section {
 
       .section-title {
         font-size: 2.2rem;
-      }
-
-      .portfolio-stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .stat-card {
-        padding: 2rem;
       }
 
       .cta-section {
@@ -662,14 +911,6 @@ body.animations-ready .cta-section {
       .filter-btn {
         padding: 0.75rem 1.5rem;
         font-size: 0.9rem;
-      }
-
-      .hero-stats {
-        gap: 1.5rem;
-      }
-
-      .hero-stat-number {
-        font-size: 2rem;
       }
     }
   </style>
@@ -715,23 +956,35 @@ body.animations-ready .cta-section {
         <a href="resume.html" class="cta-button secondary">View Resume</a>
       </div>
       
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="hero-stat-number">12+</span>
-          <span class="hero-stat-label">Projects</span>
+      <!-- GitHub Contributions Graph -->
+      <div class="github-graph-section">
+        <div class="github-header">
+          <i class="bi bi-github"></i>
+          <h3>GitHub Contributions</h3>
+          <span class="github-username">@Cynthia-Motaung</span>
         </div>
-        <div class="hero-stat">
-          <span class="hero-stat-number">8</span>
-          <span class="hero-stat-label">Technologies</span>
+        <div class="github-graph-container">
+          <div class="github-graph" id="github-graph">
+            <!-- Graph will be populated by JavaScript -->
+          </div>
+          <div class="github-stats">
+            <div class="github-stat">
+              <span class="stat-number" id="total-contributions">0</span>
+              <span class="stat-label">Total Contributions</span>
+            </div>
+            <div class="github-stat">
+              <span class="stat-number" id="current-streak">0</span>
+              <span class="stat-label">Current Streak</span>
+            </div>
+            <div class="github-stat">
+              <span class="stat-number" id="longest-streak">0</span>
+              <span class="stat-label">Longest Streak</span>
+            </div>
+          </div>
         </div>
-        <div class="hero-stat">
-          <span class="hero-stat-number">3+</span>
-          <span class="hero-stat-label">Years Experience</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-number">100%</span>
-          <span class="hero-stat-label">Success Rate</span>
-        </div>
+        <a href="https://github.com/Cynthia-Motaung" target="_blank" class="github-link">
+          View Full GitHub Profile <i class="bi bi-arrow-up-right"></i>
+        </a>
       </div>
     </div>
   </section>
@@ -981,19 +1234,20 @@ body.animations-ready .cta-section {
 
   <!-- Use the same footer as your main site -->
   <footer class="site-footer">
-  <div class="footer-content">
-    <p>&copy; <span id="copyright-year">2025</span> Cynthia Motaung. All rights reserved.</p>
-    <p class="last-updated">Last updated: <span id="last-updated"></span></p>
-    <nav class="footer-nav" aria-label="Footer navigation">
-      <ul class="footer-links-list">
-        <li><a href="https://github.com/Cynthia-Motaung" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/cn-motaung/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
-        <li><a href="portfolio.html" class="footer-link">Portfolio</a></li>
-        <li><a href="resume.html" class="footer-link">Resume</a></li>
-      </ul>
-    </nav>
-  </div>
-</footer>
+    <div class="footer-content">
+      <p>&copy; <span id="copyright-year">2025</span> Cynthia Motaung. All rights reserved.</p>
+      <p class="last-updated">Last updated: <span id="last-updated"></span></p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul class="footer-links-list">
+          <li><a href="https://github.com/Cynthia-Motaung" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/cn-motaung/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+          <li><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+          <li><a href="resume.html" class="footer-link">Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
   <script>
     // Enhanced theme system
     const themeToggle = document.getElementById('theme-toggle');
@@ -1019,6 +1273,214 @@ body.animations-ready .cta-section {
         localStorage.setItem('theme', newTheme);
         applyTheme(newTheme);
       });
+    }
+
+    // GitHub Contributions Graph
+    function initGitHubGraph() {
+      const graphContainer = document.getElementById('github-graph');
+      const totalContributionsEl = document.getElementById('total-contributions');
+      const currentStreakEl = document.getElementById('current-streak');
+      const longestStreakEl = document.getElementById('longest-streak');
+      
+      console.log('Initializing GitHub Graph...', graphContainer);
+      
+      if (!graphContainer) {
+        console.error('GitHub graph container not found!');
+        return;
+      }
+      
+      // Create tooltip element
+      const tooltip = document.createElement('div');
+      tooltip.className = 'contribution-tooltip';
+      document.body.appendChild(tooltip);
+      
+      // Generate mock data
+      const contributions = generateMockContributions();
+      console.log('Generated contributions:', contributions.length);
+      
+      // Render graph
+      renderGitHubGraph(contributions, graphContainer, tooltip);
+      
+      // Calculate and display stats
+      const stats = calculateGitHubStats(contributions);
+      totalContributionsEl.textContent = stats.totalContributions.toLocaleString();
+      currentStreakEl.textContent = stats.currentStreak;
+      longestStreakEl.textContent = stats.longestStreak;
+      
+      console.log('GitHub graph initialized successfully');
+    }
+
+    function generateMockContributions() {
+  const contributions = [];
+  const today = new Date();
+  const startDate = new Date(today);
+  startDate.setDate(startDate.getDate() - 364); // One year of data
+  
+  for (let i = 0; i < 365; i++) {
+    const date = new Date(startDate);
+    date.setDate(date.getDate() + i);
+    
+    // More active contribution pattern for better visibility
+    let level;
+    const dayOfWeek = date.getDay();
+    const random = Math.random();
+    
+    // Make more days active for better visual representation
+    if (dayOfWeek === 0 || dayOfWeek === 6) { // Weekend
+      level = random > 0.4 ? Math.floor(Math.random() * 3) + 1 : 0;
+    } else { // Weekday
+      level = random > 0.2 ? Math.floor(Math.random() * 4) + 1 : 0;
+    }
+    
+    // Ensure some clusters of high activity
+    if (i % 15 === 0 && random > 0.3) {
+      level = 4;
+      // Make surrounding days also active
+      if (i > 0) contributions[i-1].level = Math.max(contributions[i-1].level, 2);
+      if (i < 364) contributions[i] && (contributions[i].level = Math.max(contributions[i].level, 2));
+    }
+    
+    // Recent months more active (last 3 months)
+    const monthsAgo = (today - date) / (1000 * 60 * 60 * 24 * 30);
+    if (monthsAgo < 3 && random > 0.1) {
+      level = Math.max(level, Math.floor(Math.random() * 3) + 1);
+    }
+    
+    contributions.push({
+      date: date.toISOString().split('T')[0],
+      count: level * 2 + Math.floor(Math.random() * 3), // More varied counts
+      level: level
+    });
+  }
+  
+  return contributions;
+}
+
+    function renderGitHubGraph(contributions, container, tooltip) {
+  console.log('Rendering graph with', contributions.length, 'contributions');
+  container.innerHTML = '';
+  
+  // Create weeks (columns)
+  for (let week = 0; week < 52; week++) {
+    // Create days for each week (rows)
+    for (let day = 0; day < 7; day++) {
+      const contributionIndex = week * 7 + day;
+      if (contributionIndex < contributions.length) {
+        const contribution = contributions[contributionIndex];
+        const dayElement = document.createElement('div');
+        dayElement.className = 'contribution-day';
+        dayElement.setAttribute('data-level', contribution.level);
+        dayElement.setAttribute('data-date', contribution.date);
+        dayElement.setAttribute('data-count', contribution.count);
+        
+        // Add a subtle border to make squares more visible
+        if (contribution.level > 0) {
+          dayElement.style.boxShadow = '0 0 1px rgba(0,0,0,0.1)';
+        }
+        
+        // Add hover effects
+        dayElement.addEventListener('mouseenter', (e) => {
+          const rect = dayElement.getBoundingClientRect();
+          tooltip.textContent = `${contribution.count} contributions on ${formatDate(contribution.date)}`;
+          tooltip.style.left = `${rect.left + rect.width / 2}px`;
+          tooltip.style.top = `${rect.top - 10}px`;
+          tooltip.style.transform = 'translate(-50%, -100%)';
+          tooltip.classList.add('show');
+        });
+        
+        dayElement.addEventListener('mouseleave', () => {
+          tooltip.classList.remove('show');
+        });
+        
+        container.appendChild(dayElement);
+      } else {
+        // Add empty days to fill the grid
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'contribution-day';
+        emptyDay.setAttribute('data-level', '0');
+        emptyDay.style.opacity = '0.3';
+        container.appendChild(emptyDay);
+      }
+    }
+  }
+  
+  console.log('Graph rendered with', container.children.length, 'day elements');
+}
+
+    function calculateGitHubStats(contributions) {
+      let totalContributions = 0;
+      let currentStreak = 0;
+      let longestStreak = 0;
+      let tempStreak = 0;
+      
+      const today = new Date().toISOString().split('T')[0];
+      
+      // Sort contributions by date (newest first for streak calculation)
+      const sortedContributions = [...contributions].sort((a, b) => 
+        new Date(b.date) - new Date(a.date)
+      );
+      
+      sortedContributions.forEach(contribution => {
+        totalContributions += contribution.count;
+        
+        if (contribution.count > 0) {
+          tempStreak++;
+          
+          // Check if this is part of the current streak (most recent days)
+          if (new Date(contribution.date) <= new Date(today)) {
+            if (currentStreak === 0 || 
+                (currentStreak > 0 && tempStreak > currentStreak)) {
+              currentStreak = tempStreak;
+            }
+          }
+        } else {
+          if (tempStreak > longestStreak) {
+            longestStreak = tempStreak;
+          }
+          tempStreak = 0;
+        }
+      });
+      
+      // Final check for longest streak
+      if (tempStreak > longestStreak) {
+        longestStreak = tempStreak;
+      }
+      
+      return {
+        totalContributions,
+        currentStreak,
+        longestStreak
+      };
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+    }
+
+    // Update last modified date in footer
+    function updateLastModified() {
+        const lastModifiedElements = document.querySelectorAll('#last-updated');
+        if (lastModifiedElements.length > 0) {
+            const lastModified = new Date(document.lastModified);
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            const formattedDate = lastModified.toLocaleDateString('en-US', options);
+            
+            lastModifiedElements.forEach(element => {
+                element.textContent = formattedDate;
+            });
+        }
     }
 
     // Enhanced project filtering with animations
@@ -1083,8 +1545,9 @@ body.animations-ready .cta-section {
       elementObserver.observe(element);
     });
 
-    // Update copyright year
+    // Update copyright year and last modified date
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    updateLastModified();
 
     // Mobile menu functionality
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -1136,6 +1599,23 @@ body.animations-ready .cta-section {
       });
       img.style.opacity = '0';
       img.style.transition = 'opacity 0.3s ease';
+    });
+
+    // Initialize everything when DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM fully loaded, initializing GitHub graph...');
+      initGitHubGraph();
+    });
+
+    // Also try initializing on window load as backup
+    window.addEventListener('load', function() {
+      console.log('Window fully loaded, checking GitHub graph...');
+      // If graph still not initialized, try again
+      const graphContainer = document.getElementById('github-graph');
+      if (graphContainer && graphContainer.children.length === 0) {
+        console.log('Re-initializing GitHub graph...');
+        initGitHubGraph();
+      }
     });
   </script>
 </body>
