@@ -306,8 +306,10 @@ function updateLastModified() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', updateLastModified);
-document.addEventListener("DOMContentLoaded",  () => {
+// Main DOMContentLoaded event
+document.addEventListener("DOMContentLoaded", () => {
+  // Update last modified date
+  updateLastModified();
   // --- DYNAMIC COPYRIGHT YEAR ---
   const copyrightYear = document.getElementById('copyright-year');
   if (copyrightYear) {
