@@ -64,3 +64,26 @@
         }
       });
     }
+
+
+    // Update last modified date in footer
+function updateLastModified() {
+    const lastModifiedElements = document.querySelectorAll('#last-updated');
+    if (lastModifiedElements.length > 0) {
+        const lastModified = new Date(document.lastModified);
+        const options = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        };
+        const formattedDate = lastModified.toLocaleDateString('en-US', options);
+        
+        lastModifiedElements.forEach(element => {
+            element.textContent = formattedDate;
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', updateLastModified);

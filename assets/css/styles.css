@@ -1802,3 +1802,10 @@ h2::after {
 .scroll-smooth {
   -webkit-overflow-scrolling: touch;
 }
+
+.last-updated {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin: 0.5rem 0;
+  text-align: center;
+}
