@@ -466,27 +466,7 @@ h2::after {
     animation: bounce 2s infinite;
 }
 
-/**.mouse {
-    width: 25px;
-    height: 40px;
-    border: 2px solid var(--secondary-color);
-    border-radius: 20px;
-    position: relative;
-    display: block;
-}**/
 
-/**.mouse span {
-    display: block;
-    width: 8px;
-    height: 8px;
-    background: var(--secondary-color);
-    border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    top: 8px;
-    transform: translateX(-50%);
-    animation: scroll-wheel 1.5s infinite ease-out;
-}**/
 
 /* 9. Component: About Section */
 .about-section .about-content {
@@ -1148,16 +1128,6 @@ h2::after {
   to { transform: rotate(360deg); }
 }
 
-/**@keyframes scroll-wheel {
-    0% {
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, 15px);
-    }
-}**/
 
 @keyframes draw {
     to {
