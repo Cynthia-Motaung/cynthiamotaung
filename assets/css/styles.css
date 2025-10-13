@@ -44,8 +44,8 @@ TABLE OF CONTENTS
   --header-bg: rgba(249, 249, 249, 0.8);
   --text-color: #333333;
   --secondary-color: #666666;
-  --accent-gradient: linear-gradient(45deg, #fdfdff, #f6fff8);
-  --accent-color: #fdfdff;
+  --accent-gradient: linear-gradient(45deg, #393d3f, #252323);
+  --accent-color: #393d3f;
   --border-color: #e0e0e0;
   --button-primary-text: #ffffff;
 }
